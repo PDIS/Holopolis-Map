@@ -81,7 +81,7 @@ export default {
   created: function() {
     model.getGpsCenter().then(position => {
       this.showPosition(position);
-      model.getMapMarkers(location).then(this.showMarkers);
+      model.getMapMarkers(position).then(this.showMarkers);
     });
   }
 }
