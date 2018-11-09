@@ -15,7 +15,7 @@ import { LMap, LTileLayer, LMarker, LPopup } from 'vue2-leaflet';
 
 const model = new MainPage();
 
-const center = model.getMapCenter();
+const center = model.getMapDefaultCenter();
 const marker = model.getMapMarkers()[0];
 
 export default {
@@ -29,11 +29,11 @@ export default {
   data () {
     return {
       zoom: 13,
-      center: L.latLng(center[0], center[1]),
+      center: L.latLng(center.longitude, center.latitude),
       url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      marker: L.latLng(marker[0], marker[1]),
-      text: 'this is a marker'
+      marker: L.latLng(marker.coords.longitude, marker.coords.latitude),
+      text: marker.name
     }
   },
   methods: {
