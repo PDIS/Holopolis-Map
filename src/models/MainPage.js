@@ -1,9 +1,21 @@
 export class MainPage {
     getMapDefaultCenter() {
-        return {latitude: 40.40613, longitude: -3.6903};
+        return {coords: {latitude: 40.40613, longitude: -3.6903}};
+    }
+    getGpsCenter() {
+        return new Promise((resolve, reject) => {
+            if(navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(resolve, reject);
+            } else {
+                reject("Geo Location not supported by browser");
+            }
+        }).catch(err => {
+            console.error(err);
+            return this.getMapDefaultCenter();
+        });
     }
     getMapMarkers() {
-        return [
+        return new Promise(resolve => resolve([
             {
                 name: 'Atocha',
                 questions: [
@@ -37,7 +49,7 @@ export class MainPage {
                 ],
                 coords: {latitude: 40.40817, longitude: -3.69437},
             },
-        ];
+        ]));
     }
 }
 

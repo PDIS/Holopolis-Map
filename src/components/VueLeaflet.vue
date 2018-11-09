@@ -50,10 +50,10 @@ export default {
   data () {
     return {
       zoom: 13,
-      center: L.latLng(center.latitude, center.longitude),
+      center: L.latLng(center.coords.latitude, center.coords.longitude),
       url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      markers: model.getMapMarkers(),
+      markers: [],
       sheet: false,
       tiles: [
         { img: 'keep.png', title: 'Keep' },
@@ -65,28 +65,32 @@ export default {
     }
   },
   methods: {
-  //function that gets the location and returns it
-  getLocation: function() {
-    if(navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this.showPosition);
-    } else {
-      console.log("Geo Location not supported by browser");
-    }
-  },
-  //function that retrieves the position
-  showPosition: function(position) {
-    var location = {
-      longitude: position.coords.longitude,
-      latitude: position.coords.latitude
-    }
-    this.center = L.latLng(location)
-    this.zoom = 15;
-    console.log(location)
-    }
+    //function that gets the location and returns it
+    getLocation: function() {
+      if(navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(this.showPosition);
+      } else {
+        console.log("Geo Location not supported by browser");
+      }
+    },
+    //function that retrieves the position
+    showPosition: function(position) {
+      const location = {
+        longitude: position.coords.longitude,
+        latitude: position.coords.latitude
+      };
+      this.center = L.latLng(location);
+      this.zoom = 15;
+    },
+    showMarkers: function(markers) {
+      this.markers = markers;
+    },
   },
   created: function() {
-    //request for location
-    this.getLocation();
+    model.getGpsCenter().then(position => {
+      this.showPosition(position);
+      model.getMapMarkers(location).then(this.showMarkers);
+    });
   }
 }
 </script>
