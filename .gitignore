@@ -8,6 +8,9 @@ yarn-error.log*
 /test/e2e/reports
 selenium-debug.log
 
+# Jose environment
+/dev_env.sh
+
 # Editor directories and files
 .idea
 *.suo
