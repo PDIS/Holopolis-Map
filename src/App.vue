@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer
+    <!-- <v-navigation-drawer
       persistent
       :mini-variant="miniVariant"
       :clipped="clipped"
@@ -8,7 +8,7 @@
       enable-resize-watcher
       fixed
       app
-    >
+    > -->
      <!--  <v-list>
         <v-list-tile
           value="true"
@@ -23,7 +23,7 @@
           </v-list-tile-content>
         </v-list-tile>
       </v-list> -->
-    </v-navigation-drawer>
+    <!-- </v-navigation-drawer> -->
     <v-toolbar
       app
       :clipped-left="clipped"
@@ -47,13 +47,13 @@
     <v-content>
       <router-view/>
     </v-content>
-    <v-navigation-drawer
+<!--     <v-navigation-drawer
       temporary
       :right="right"
       v-model="rightDrawer"
       fixed
       app
-    >
+    > -->
      <!--  <v-list>
         <v-list-tile @click="right = !right">
           <v-list-tile-action>
@@ -62,7 +62,7 @@
           <v-list-tile-title>Switch drawer (click me)</v-list-tile-title>
         </v-list-tile>
       </v-list> -->
-    </v-navigation-drawer>
+    <!-- </v-navigation-drawer> -->
  <!--    <v-footer :fixed="fixed" app>
       <span>&copy; 2017</span>
     </v-footer> -->
