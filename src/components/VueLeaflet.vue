@@ -2,8 +2,8 @@
   <div class="vue-leaflet">
     <l-map style="width: 100%; height: 600px;" :zoom="zoom" :center="center">
       <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
-      <l-marker :lat-lng="marker">
-        <l-popup :content="text"></l-popup>
+      <l-marker v-for="marker in markers" :lat-lng={{"[" + marker.coords.latitude + "," + marker.coords.longitude + "]"}}">
+        <l-popup :content="marker.text"></l-popup>
       </l-marker>
     </l-map> 
   </div>
@@ -16,7 +16,6 @@ import { LMap, LTileLayer, LMarker, LPopup } from 'vue2-leaflet';
 const model = new MainPage();
 
 const center = model.getMapDefaultCenter();
-const marker = model.getMapMarkers()[0];
 
 export default {
   name: 'VueLeaflet',
@@ -32,8 +31,7 @@ export default {
       center: L.latLng(center.latitude, center.longitude),
       url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      marker: L.latLng(marker.coords.latitude, marker.coords.longitude),
-      text: marker.name
+      markers: model.getMapMarkers(),
     }
   },
   methods: {
