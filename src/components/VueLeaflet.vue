@@ -4,7 +4,7 @@
       <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
       <div v-for="marker in markers">
         <l-marker :lat-lng="[marker.coords.latitude, marker.coords.longitude]">
-          <l-popup :content="marker.text"></l-popup>
+          <l-popup :content="marker.name"></l-popup>
         </l-marker>
       </div>
     </l-map> 
@@ -52,6 +52,7 @@ export default {
       latitude: position.coords.latitude
     }
     this.center = L.latLng(location)
+    this.zoom = 15;
     console.log(location)
     }
   },
