@@ -51,7 +51,7 @@ export default {
       longitude: position.coords.longitude,
       latitude: position.coords.latitude
     }
-    this.center = location
+    
     console.log(location)
     }
   },
