@@ -10,7 +10,7 @@
     </l-map>
     <v-bottom-sheet v-model="sheet">
       <v-list>
-        <v-subheader>Open in</v-subheader>
+        <v-subheader>HOLA!!!</v-subheader>
         <v-list-tile
           v-for="tile in tiles"
           :key="tile.title"
