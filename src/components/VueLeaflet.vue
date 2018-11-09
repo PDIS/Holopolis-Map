@@ -65,14 +65,6 @@ export default {
     }
   },
   methods: {
-    //function that gets the location and returns it
-    getLocation: function() {
-      if(navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(this.showPosition);
-      } else {
-        console.log("Geo Location not supported by browser");
-      }
-    },
     //function that retrieves the position
     showPosition: function(position) {
       const location = {
