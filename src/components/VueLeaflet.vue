@@ -2,9 +2,11 @@
   <div class="vue-leaflet">
     <l-map style="width: 100%; height: 600px;" :zoom="zoom" :center="center">
       <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
-      <l-marker v-for="marker in markers" :lat-lng={{"[" + marker.coords.latitude + "," + marker.coords.longitude + "]"}}">
-        <l-popup :content="marker.text"></l-popup>
-      </l-marker>
+      <div v-for="marker in markers">
+        <l-marker :lat-lng="[marker.coords.latitude, marker.coords.longitude]">
+          <l-popup :content="marker.text"></l-popup>
+        </l-marker>
+      </div>
     </l-map> 
   </div>
 </template>
