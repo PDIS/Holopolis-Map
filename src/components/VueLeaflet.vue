@@ -29,10 +29,10 @@ export default {
   data () {
     return {
       zoom: 13,
-      center: L.latLng(center.longitude, center.latitude),
+      center: L.latLng(center.latitude, center.longitude),
       url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      marker: L.latLng(marker.coords.longitude, marker.coords.latitude),
+      marker: L.latLng(marker.coords.latitude, marker.coords.longitude),
       text: marker.name
     }
   },
