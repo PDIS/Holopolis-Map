@@ -35,6 +35,29 @@ export default {
       marker: L.latLng(marker[0], marker[1]),
       text: 'this is a marker'
     }
+  },
+  methods: {
+  //function that gets the location and returns it
+  getLocation: function() {
+    if(navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(this.showPosition);
+    } else {
+      console.log("Geo Location not supported by browser");
+    }
+  },
+  //function that retrieves the position
+  showPosition: function(position) {
+    var location = {
+      longitude: position.coords.longitude,
+      latitude: position.coords.latitude
+    }
+    this.center = location
+    console.log(location)
+    }
+  },
+  created: function() {
+    //request for location
+    this.getLocation();
   }
 }
 </script>

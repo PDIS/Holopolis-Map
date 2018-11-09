@@ -10,6 +10,6 @@ export default {
   name: "App",
   components: {
     VueLeaflet
-  }
+  },
 };
 </script>
