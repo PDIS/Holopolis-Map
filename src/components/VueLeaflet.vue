@@ -1,22 +1,14 @@
 <template>
   <div class="vue-leaflet">
-    <l-map style="width: 100%; height: 600px; z-index: -1000px" :zoom="zoom" :center="center">
+    <l-map style="width: 100%; height: 600px; z-index:0" :zoom="zoom" :center="center">
       <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
       <div v-for="marker in markers">
-        <l-marker :lat-lng="[marker.coords.latitude, marker.coords.longitude]">
+        <l-marker :lat-lng="[marker.coords.latitude, marker.coords.longitude]" @click="sheet = true">
           <l-popup :content="marker.name"></l-popup>
         </l-marker>
       </div>
     </l-map>
     <v-bottom-sheet v-model="sheet">
-      <v-btn
-        slot="activator"
-        color="purple"
-        dark
-      >
-        Click me
-      </v-btn>
-
       <v-list>
         <v-subheader>Open in</v-subheader>
         <v-list-tile
