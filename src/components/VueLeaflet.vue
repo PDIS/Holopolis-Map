@@ -3,14 +3,13 @@
     <l-map style="width: 100%; height: 100vh; z-index:0" :zoom="zoom" :center="center">
       <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
       <div v-for="marker in markers">
-        <l-marker :lat-lng="[marker.coords.latitude, marker.coords.longitude]" @click="sheet = true">
-          <l-popup :content="marker.name"></l-popup>
+        <l-marker :lat-lng="[marker.coords.latitude, marker.coords.longitude]" @click="selectMarker(marker)">
         </l-marker>
       </div>
     </l-map>
     <v-bottom-sheet v-model="sheet">
       <v-list>
-        <v-subheader>HOLA!!!</v-subheader>
+        <v-subheader>{{selectedMarker.questions[0].title}}</v-subheader>
         <v-list-tile
           v-for="tile in tiles"
           :key="tile.title"
@@ -32,10 +31,10 @@
 </template>
 
 <script>
-import { MainPage } from '../models/MainPage';
+import { MapPage } from '../models/MapPage';
 import { LMap, LTileLayer, LMarker, LPopup } from 'vue2-leaflet';
 
-const model = new MainPage();
+const model = new MapPage();
 
 const center = model.getMapDefaultCenter();
 
@@ -55,12 +54,19 @@ export default {
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       markers: [],
       sheet: false,
+      selectedMarker: {
+        name: 'UNSELECTED',
+        questions: [
+            {
+                title: 'UNSELECTED!',
+                type: 'unselected',
+                polis_link: 'http://wrong-link'
+            },
+        ],
+      },
       tiles: [
-        { img: 'keep.png', title: 'Keep' },
-        { img: 'inbox.png', title: 'Inbox' },
-        { img: 'hangouts.png', title: 'Hangouts' },
-        { img: 'messenger.png', title: 'Messenger' },
-        { img: 'google.png', title: 'Google+' }
+        { img: 'keep.png', title: 'Vote' },
+        { img: 'messenger.png', title: 'Share' },
       ]
     }
   },
@@ -76,6 +82,10 @@ export default {
     },
     showMarkers: function(markers) {
       this.markers = markers;
+    },
+    selectMarker: function(marker) {
+      this.sheet = true;
+      this.selectedMarker = marker;
     },
   },
   created: function() {

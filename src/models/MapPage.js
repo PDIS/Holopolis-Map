@@ -1,4 +1,4 @@
-export class MainPage {
+export class MapPage {
     getMapDefaultCenter() {
         return {coords: {latitude: 40.40613, longitude: -3.6903}};
     }
