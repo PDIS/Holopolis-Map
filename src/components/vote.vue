@@ -24,7 +24,7 @@
                 <v-btn round color="teal accent-2" @click="voteNo()">Disagree</v-btn>
               </v-flex>
               <v-flex xs4 md4 lg4>
-                <v-btn round color="teal accent-2" @click="skipVote()">I DON'T CARE</v-btn>
+                <v-btn round color="teal accent-2" @click="skipVote()">Pass</v-btn>
               </v-flex>
             </v-layout>
           </v-container>
