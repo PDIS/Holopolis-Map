@@ -1,15 +1,15 @@
 <template>
   <div id="app">
-    <VueLeaflet></VueLeaflet>
+    <worldmap></worldmap>
   </div>
 </template>
 
 <script>
-import VueLeaflet from '../components/VueLeaflet'
+import worldmap from '../components/worldmap'
 export default {
   name: "App",
   components: {
-    VueLeaflet
+    worldmap
   },
 };
 </script>

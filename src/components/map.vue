@@ -80,16 +80,16 @@
 </template>
 
 <script>
-import { MapPage } from '../models/MapPage';
+import { WorldMapPage } from '../models/WorldMapPage';
 import { LMap, LTileLayer, LMarker, LPopup } from 'vue2-leaflet';
 import vote from '@/components/vote'
 
-const model = new MapPage();
+const model = new WorldMapPage();
 
 const center = model.getMapDefaultCenter();
 
 export default {
-  name: 'VueLeaflet',
+  name: 'map',
   components: {
     LMap,
     LTileLayer,

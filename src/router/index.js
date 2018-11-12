@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import VueLeaflet from '@/components/VueLeaflet'
+import worldmap from '@/components/worldmap'
 import index from '@/components/index'
 import vote from '@/components/vote'
 import share from '@/components/share'
@@ -17,9 +17,9 @@ export default new Router({
       component: index
     },
     {
-      path: '/VueLeaflet',
-      name: 'VueLeaflet',
-      component: VueLeaflet
+      path: '/worldmap',
+      name: 'worldmap',
+      component: worldmap
     },
     {
       path: '/vote/:id',
