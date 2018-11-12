@@ -3,7 +3,7 @@
     <l-map style="width: 100%; height: 100vh; z-index:0" :zoom="zoom" :center="center">
       <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
       <div v-for="marker in markers" :key="marker.id">
-        <l-marker :lat-lng="[marker.coords.latitude, marker.coords.longitude]" @click="selectMarker(marker)">
+        <l-marker :lat-lng="[marker.coords.latitude, marker.coords.longitude]" :icon="myIcon" @click="selectMarker(marker)">
         </l-marker>
       </div>
     </l-map>
@@ -113,7 +113,11 @@ export default {
                 polis_link: 'http://wrong-link'
             },
         ],
-      }
+      },
+      myIcon: L.icon({
+        iconUrl: 'https://github.com/PDIS/Holopolis-Map/blob/master/src/assets/marker.png?raw=true',
+        iconSize: [31.3, 36],
+      })
     }
   },
   methods: {
