@@ -2,12 +2,42 @@
   <div class="vue-leaflet">
     <l-map style="width: 100%; height: 100vh; z-index:0" :zoom="zoom" :center="center">
       <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
-      <div v-for="marker in markers">
+      <div v-for="marker in markers" :key="marker.id">
         <l-marker :lat-lng="[marker.coords.latitude, marker.coords.longitude]" @click="selectMarker(marker)">
         </l-marker>
       </div>
     </l-map>
-    <v-bottom-sheet v-model="sheet">
+    <v-dialog
+      v-model="dialog"
+      max-width="290"
+    >
+      <v-card>
+        <img src="@/assets/marker.png" height="36" width="31.3" class="ml-3 mt-3">
+        <v-card-text>
+          How to bring down atmospheric pollution in Madrid?
+        </v-card-text>
+        <v-card-actions>
+          <v-btn
+            color=""
+            flat="flat"
+            @click="dialog = false"
+          >
+          <v-icon left>where_to_vote</v-icon>
+            Vote
+          </v-btn>
+          <v-spacer></v-spacer>
+          <v-btn
+            color=""
+            flat="flat"
+            @click="dialog = false"
+          >
+          <v-icon left>share</v-icon>
+            Share
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+    <!-- <v-bottom-sheet v-model="sheet">
         <v-list>
           <v-subheader>{{selectedMarker.questions[0].title}}</v-subheader>
           <v-list-tile
@@ -28,6 +58,7 @@
           <v-list-tile
             key="Share"
             @click="sheet = false"
+            :to="{name:'share', params: {id:selectedMarker.questions[0].id}}"
           >
         
               <v-list-tile-avatar>
@@ -41,7 +72,7 @@
               <v-list-tile-title>Share</v-list-tile-title>
           </v-list-tile>
         </v-list>
-    </v-bottom-sheet>
+    </v-bottom-sheet> -->
   </div>
 </template>
 
@@ -70,7 +101,7 @@ export default {
       url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       markers: [],
-      sheet: false,
+      dialog: false,
       selectedMarker: {
         name: 'UNSELECTED',
         questions: [
@@ -97,7 +128,7 @@ export default {
       this.markers = markers;
     },
     selectMarker: function(marker) {
-      this.sheet = true;
+      this.dialog = true;
       this.selectedMarker = marker;
     },
   },

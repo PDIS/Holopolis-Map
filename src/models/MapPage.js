@@ -17,6 +17,7 @@ export class MapPage {
     getMapMarkers() {
         return new Promise(resolve => resolve([
             {
+                id:1,
                 name: 'Atocha',
                 questions: [
                     {
