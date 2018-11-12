@@ -7,7 +7,7 @@
         </l-marker>
       </div>
     </l-map>
-    <v-bottom-sheet v-model="sheet">
+    <!-- <v-bottom-sheet v-model="sheet">
         <v-list>
           <v-subheader>{{selectedMarker.questions[0].title}}</v-subheader>
           <v-list-tile
@@ -42,7 +42,7 @@
               <v-list-tile-title>Share</v-list-tile-title>
           </v-list-tile>
         </v-list>
-    </v-bottom-sheet>
+    </v-bottom-sheet> -->
   </div>
 </template>
 
