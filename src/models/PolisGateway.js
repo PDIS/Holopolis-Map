@@ -33,5 +33,15 @@ export class PolisGateway {
             }
         })
     }
+    postComment(agid, conversationId, pid, comment) {
+        return axios({
+            "agid": agid,
+            "conversation_id": conversationId,
+            "pid": pid,
+            "txt": comment,
+            "is_seed": true,
+            "vote": -1
+        });
+    }
 }
 

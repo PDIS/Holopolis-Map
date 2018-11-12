@@ -4,6 +4,7 @@ import VueLeaflet from '@/components/VueLeaflet'
 import index from '@/components/index'
 import vote from '@/components/vote'
 import share from '@/components/share'
+import comment from '@/components/comment'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/share/:id',
       name: 'share',
       component: share
-    }
+    },
+    {
+      path: '/comment/:id',
+      name: 'comment',
+      component: comment
+    },
   ]
 })
