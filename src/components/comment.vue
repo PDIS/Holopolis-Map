@@ -15,8 +15,8 @@ import { CommentPage } from "../models/CommentPage";
 const model = new CommentPage();
 
 export default {
-  data: function(props) {
-    console.log(props);
+  data: function(a, b) {
+    console.log(a, b);
     return {
         commentInput: "",
     };

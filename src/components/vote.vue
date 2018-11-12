@@ -6,17 +6,21 @@
       <div @click="voteYes()">Vote YES</div>
       <div @click="voteNo()">Vote NO</div>
       <div @click="skipVote()">SKIP</div>
-      <div :to="{name:'comment', params: {id:0}}"></div>
+      <v-btn :to="{name:'comment', params: {id:0}}">Write your own opinion</v-btn>
     </v-dialog>
   </div>
 </template>
 
 <script>
 import { VotePage } from "../models/VotePage";
+import comment from '@/components/comment';
 
 const model = new VotePage();
 
 export default {
+  components: {
+    comment
+  },
   data: function() {
     return {
       displayQuestion: false,
