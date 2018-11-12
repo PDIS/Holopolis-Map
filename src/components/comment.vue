@@ -39,7 +39,7 @@ export default {
   created: function() {
       model.loadParticipationId(this.conversationId).catch(err => {
         console.error(err);
-        this.$router.push('login');
+        this.$router.push('/login');
       });
   }
 }
