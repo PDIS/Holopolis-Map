@@ -31,7 +31,7 @@
         </v-card>
       </v-flex>
       <v-flex xs12 class="mt-5">
-        <v-btn flat color="teal accent-4" class="headline font-weight-light" :to="{name:'comment', params: {id:0}}">Give your opinion</v-btn>
+        <v-btn flat color="teal accent-4" class="headline font-weight-light" :to="{name:'comment', params: {id:this.conversationId}}">Give your opinion</v-btn>
       </v-flex>
     </v-layout>
   </v-container>
