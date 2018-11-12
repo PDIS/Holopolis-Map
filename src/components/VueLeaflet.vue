@@ -3,7 +3,7 @@
     <l-map style="width: 100%; height: 100vh; z-index:0" :zoom="zoom" :center="center">
       <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
       <div v-for="marker in markers" :key="marker.id">
-        <l-marker :lat-lng="[marker.coords.latitude, marker.coords.longitude]" :icon="myIcon" @click="selectMarker(marker)">
+        <l-marker :lat-lng="[marker.coords.latitude, marker.coords.longitude]" :icon="marker.icon" @click="selectMarker(marker)">
         </l-marker>
       </div>
     </l-map>
