@@ -25,7 +25,7 @@ export default {
       publishComment: function() {
           model.publishComment(this.conversationId, this.commentInput).then(() => {
               console.log("go back to vote again");
-              router.push('vote', {params: {}})
+              this.$router.push({name: 'vote', params: {id: this.conversationId}});
           }).catch(err => {
               console.log("server failure, try again later");
               console.error(err);

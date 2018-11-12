@@ -6,8 +6,7 @@ export class CommentPage {
     }
     publishComment(conversationId, comment) {
         const agid = 0;
-        const pid = new Date().getTime()/1000;
-        return this.gateway.postComment(agid, conversationId, pid, comment);
+        return this.gateway.postComment(agid, conversationId, "1", comment);
     }
 }
 
