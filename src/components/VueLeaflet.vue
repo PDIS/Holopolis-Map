@@ -13,8 +13,8 @@
           <v-list-tile
             key="Vote"
             @click="sheet = false"
+             :to="{name:'vote', params: {id:selectedMarker.questions[0].id}}"
           >
-            <a v-bind:href="`#/question/${selectedMarker.questions[0].id}/`">
               <v-list-tile-avatar>
                 <v-avatar size="32px" tile>
                   <img
@@ -24,13 +24,12 @@
                 </v-avatar>
               </v-list-tile-avatar>
               <v-list-tile-title>Vote</v-list-tile-title>
-            </a>
           </v-list-tile>
           <v-list-tile
             key="Share"
             @click="sheet = false"
           >
-            <a v-bind:href="`#/share/${selectedMarker.questions[0].id}/`">
+        
               <v-list-tile-avatar>
                 <v-avatar size="32px" tile>
                   <img
@@ -40,7 +39,6 @@
                 </v-avatar>
               </v-list-tile-avatar>
               <v-list-tile-title>Share</v-list-tile-title>
-            </a>
           </v-list-tile>
         </v-list>
     </v-bottom-sheet>
@@ -50,6 +48,7 @@
 <script>
 import { MapPage } from '../models/MapPage';
 import { LMap, LTileLayer, LMarker, LPopup } from 'vue2-leaflet';
+import vote from '@/components/vote'
 
 const model = new MapPage();
 
@@ -61,7 +60,8 @@ export default {
     LMap,
     LTileLayer,
     LMarker,
-    LPopup
+    LPopup,
+    vote
   },
   data () {
     return {
