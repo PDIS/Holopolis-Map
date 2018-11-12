@@ -6,7 +6,7 @@
       <div @click="voteYes()">Vote YES</div>
       <div @click="voteNo()">Vote NO</div>
       <div @click="skipVote()">SKIP</div>
-      <div :to="{name:'comment', params: {id:selectedMarker.questions[0].id}}"></div>
+      <div :to="{name:'comment', params: {id:0}}"></div>
     </v-dialog>
   </div>
 </template>
