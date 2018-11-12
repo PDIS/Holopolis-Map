@@ -14,13 +14,14 @@
       <v-card>
         <img src="@/assets/marker.png" height="36" width="31.3" class="ml-3 mt-3">
         <v-card-text>
-          How to bring down atmospheric pollution in Madrid?
+          {{selectedMarker.questions[0].title}}
         </v-card-text>
         <v-card-actions>
           <v-btn
             color=""
             flat="flat"
             @click="dialog = false"
+            :to="{name:'vote', params: {id:selectedMarker.questions[0].id}}"
           >
           <v-icon left>where_to_vote</v-icon>
             Vote
@@ -30,6 +31,7 @@
             color=""
             flat="flat"
             @click="dialog = false"
+            :to="{name:'share', params: {id:selectedMarker.questions[0].id}}"
           >
           <v-icon left>share</v-icon>
             Share
