@@ -22,7 +22,7 @@
             color=""
             flat="flat"
             @click="dialog = false"
-            :to="{name:'vote', params: {id:selectedMarker.questions[0].id}}"
+            :to="{name:'vote', params: {id: selectedMarker.questions[0].id}}"
           >
           <v-icon left>where_to_vote</v-icon>
             Vote

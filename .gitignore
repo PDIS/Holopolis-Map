@@ -12,6 +12,7 @@ selenium-debug.log
 /dev_env.sh
 
 # Editor directories and files
+.vscode
 .idea
 *.suo
 *.ntvs*
