@@ -10,6 +10,16 @@ export class CommentPage {
             this.participationId = pid;
         });
     }
+    getSuggestionsFor(input) {
+        input = input.replace(/\s/g,"");
+        if (input === "") return [];
+        return [
+            {id: 1, txt: "one two three four five six seven the", dotdotdot: "one two three four five six seven ..."},
+            {id: 2, txt: "apple pear orange strawberry melon the or", dotdotdot: "apple pear orange strawberry melon the ..."},
+            {id: 3, txt: "jump run walk talk sit stand hide or", dotdotdot: "jump run walk talk sit stand hide ..."},
+            {id: 4, txt: "spain taiwan colombia germany uk or", dotdotdot: "spain taiwan colombia germany uk ..."},
+        ].filter(phrase => phrase.txt.includes(input));
+    }
     publishComment(conversationId, comment) {
         const agid = 0;
         if (this.participationId === null) {

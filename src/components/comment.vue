@@ -5,9 +5,15 @@
         <h4 class="display-1">How to bring down atmospheric pollution in Madrid?</h4>
       </v-flex>
       <v-flex xs12 class="mt-5">
-        <v-textarea solo v-model="commentInput">
+        <v-textarea solo v-model="commentInput" @keyup="showSuggestions()">
         </v-textarea>
       </v-flex>
+      <v-expansion-panel>
+          <v-expansion-panel-content v-for="suggestion in suggestions" :key="suggestion.id">
+              <div slot="header">{{suggestion.dotdotdot}}</div>
+              <v-btn @click="goToQuestion(suggestion.id)">{{suggestion.txt}}</v-btn>
+          </v-expansion-panel-content>
+      </v-expansion-panel>
       <v-flex xs12 class="mt-3">
         <v-btn color="teal accent-2" @click="publishComment">
           <v-icon left class="mb-2">record_voice_over</v-icon>Send
@@ -31,9 +37,16 @@ export default {
     return {
         conversationId: this.$route.params.id,
         commentInput: "",
+        suggestions: [],
     };
   },
   methods: {
+      goToQuestion: function(id) {
+
+      },
+      showSuggestions: function() {
+          this.suggestions = model.getSuggestionsFor(this.commentInput);
+      },
       publishComment: function() {
           model.publishComment(this.conversationId, this.commentInput).then(() => {
               console.log("go back to vote again");
