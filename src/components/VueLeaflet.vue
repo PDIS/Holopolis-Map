@@ -30,7 +30,7 @@
             key="Share"
             @click="sheet = false"
           >
-            <a v-bind:href="`#/question/${selectedMarker.questions[0].id}/`">
+            <a v-bind:href="`#/share/${selectedMarker.questions[0].id}/`">
               <v-list-tile-avatar>
                 <v-avatar size="32px" tile>
                   <img
