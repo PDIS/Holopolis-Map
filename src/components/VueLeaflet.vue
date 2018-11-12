@@ -7,6 +7,36 @@
         </l-marker>
       </div>
     </l-map>
+    <v-dialog
+      v-model="dialog"
+      max-width="290"
+    >
+      <v-card>
+        <img src="@/assets/marker.png" height="36" width="31.3" class="ml-3 mt-3">
+        <v-card-text>
+          How to bring down atmospheric pollution in Madrid?
+        </v-card-text>
+        <v-card-actions>
+          <v-btn
+            color=""
+            flat="flat"
+            @click="dialog = false"
+          >
+          <v-icon left>where_to_vote</v-icon>
+            Vote
+          </v-btn>
+          <v-spacer></v-spacer>
+          <v-btn
+            color=""
+            flat="flat"
+            @click="dialog = false"
+          >
+          <v-icon left>share</v-icon>
+            Share
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
     <!-- <v-bottom-sheet v-model="sheet">
         <v-list>
           <v-subheader>{{selectedMarker.questions[0].title}}</v-subheader>
@@ -71,7 +101,7 @@ export default {
       url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       markers: [],
-      sheet: false,
+      dialog: false,
       selectedMarker: {
         name: 'UNSELECTED',
         questions: [
@@ -98,7 +128,7 @@ export default {
       this.markers = markers;
     },
     selectMarker: function(marker) {
-      this.sheet = true;
+      this.dialog = true;
       this.selectedMarker = marker;
     },
   },

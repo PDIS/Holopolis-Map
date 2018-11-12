@@ -38,7 +38,7 @@
         <v-btn icon @click.stop="clipped = !clipped">
           <v-icon large>info</v-icon>
         </v-btn>
-        <img src="@/assets/logo.png" alt="Vuetify.js" height="40" width="143.2">
+        <img src="@/assets/logo.png" height="40" width="143.2">
         <v-btn icon>
           <v-icon large>photo_camera</v-icon>
         </v-btn>
