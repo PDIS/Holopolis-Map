@@ -1,6 +1,6 @@
 <template>
   <div>
-    share
+    login
   </div>
 </template>
 

@@ -40,12 +40,14 @@
 <script>
 import { VotePage } from "../models/VotePage";
 import comment from '@/components/comment';
+import login from '@/components/login';
 
 const model = new VotePage();
 
 export default {
   components: {
-    comment
+    comment,
+    login
   },
   data: function() {
     return {
@@ -73,6 +75,10 @@ export default {
     }
   },
   created: function() {
+    model.loadParticipationId(this.conversationId).catch(err => {
+      console.error(err);
+      this.$router.push('/login');
+    });
     this.loadNextComment();
   }
 }

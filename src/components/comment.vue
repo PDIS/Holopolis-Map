@@ -11,10 +11,14 @@
 
 <script>
 import { CommentPage } from "../models/CommentPage";
+import login from '@/components/login';
 
 const model = new CommentPage();
 
 export default {
+    components: {
+        login,
+    },
   data: function() {
     return {
         conversationId: this.$route.params.id,
@@ -31,6 +35,12 @@ export default {
               console.error(err);
           });
       },
+  },
+  created: function() {
+      model.loadParticipationId(this.conversationId).catch(err => {
+        console.error(err);
+        this.$router.push('login');
+      });
   }
 }
 </script>

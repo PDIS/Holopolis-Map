@@ -3,16 +3,20 @@ import { PolisGateway } from '../models/PolisGateway';
 export class VotePage {
     constructor() {
         this.gateway = new PolisGateway();
-        this.conversation = null;
+        this.conversationId = null;
+        this.commentData = null;
+        this.participationId = null;
     }
-
+    loadParticipationId(conversationId) {
+        return this.gateway.getPid(conversationId).then(pid => {
+            this.participationId = pid;
+        });
+    }
     loadNextComment(conversationId) {
         return this.gateway.restGetNextComment(conversationId).then(response => {
-            this.conversation = {
-                id: conversationId,
-                commentData: response.data,
-            };
-            return this.conversation.commentData;
+            this.commentData = response.data;
+            this.conversationId = conversationId;
+            return this.commentData;
         });
     }
     voteYes() {
@@ -25,13 +29,11 @@ export class VotePage {
         return this._voteInternal(0);
     }
     _voteInternal(vote) {
-        if (this.conversation === null) {
-            throw new Error("load next comment first!");
+        if (this.conversationId === null || this.participationId == null || this.commentData == null) {
+            throw new Error("load participation id and a comment first!");
         }
         const agid = 0;
-        return this.gateway.getPid(this.conversation.id).then(pid => {
-            return this.gateway.restPostVote(agid, this.conversation.id, pid, this.conversation.commentData.tid, vote);
-        });
+        return this.gateway.restPostVote(agid, this.conversationId, this.participationId, this.commentData.tid, vote);
     }
 }
 
