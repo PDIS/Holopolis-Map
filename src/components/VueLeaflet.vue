@@ -2,7 +2,7 @@
   <div class="vue-leaflet">
     <l-map style="width: 100%; height: 100vh; z-index:0" :zoom="zoom" :center="center">
       <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
-      <div v-for="marker in markers">
+      <div v-for="marker in markers" :key="marker.id">
         <l-marker :lat-lng="[marker.coords.latitude, marker.coords.longitude]" @click="selectMarker(marker)">
         </l-marker>
       </div>
@@ -28,6 +28,7 @@
           <v-list-tile
             key="Share"
             @click="sheet = false"
+            :to="{name:'share', params: {id:selectedMarker.questions[0].id}}"
           >
         
               <v-list-tile-avatar>
