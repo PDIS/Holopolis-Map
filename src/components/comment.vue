@@ -1,12 +1,20 @@
 <template>
-  <div>
-    <div>Write Comment</div>
-    <v-textarea solo v-model="commentInput">
-    </v-textarea>
-    <div @click="publishComment">
-        Send
-    </div>
-  </div>
+  <v-container grid-list-xs>
+    <v-layout row wrap>
+      <v-flex xs12>
+        <h4 class="display-1">How to bring down atmospheric pollution in Madrid?</h4>
+      </v-flex>
+      <v-flex xs12 class="mt-5">
+        <v-textarea solo v-model="commentInput">
+        </v-textarea>
+      </v-flex>
+      <v-flex xs12 class="mt-3">
+        <v-btn color="teal accent-2" @click="publishComment">
+          <v-icon left class="mb-2">record_voice_over</v-icon>Send
+        </v-btn>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
