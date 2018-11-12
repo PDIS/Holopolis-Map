@@ -7,7 +7,7 @@ export class VotePage {
     }
 
     loadNextComment(conversationId) {
-        return this.gateway.getNextComment(conversationId).then(response => {
+        return this.gateway.restGetNextComment(conversationId).then(response => {
             this.conversation = {
                 id: conversationId,
                 commentData: response.data,
@@ -29,8 +29,9 @@ export class VotePage {
             throw new Error("load next comment first!");
         }
         const agid = 0;
-        const pid = new Date().getTime()/1000;
-        return this.gateway.postVote(agid, this.conversation.id, pid, this.conversation.commentData.tid, vote);
+        return this.gateway.getPid(this.conversation.id).then(pid => {
+            return this.gateway.restPostVote(agid, this.conversation.id, pid, this.conversation.commentData.tid, vote);
+        });
     }
 }
 

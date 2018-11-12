@@ -1,15 +1,20 @@
 const AUTH_KEY = "pkey_84N12fk7d9kderRe9d3sdPm9";
 
 export class PolisGateway {
-    getParticipation(conversationId) {
-        axios({
+    getPid(conversationId) {
+        return this.restGetParticipation(conversationId).then(response => {
+            return Object.keys(response.data).length;
+        });
+    }
+    restGetParticipation(conversationId) {
+        return axios({
           method: 'get',
           url: 'https://polis-api-proxy.herokuapp.com/api/v3/conversations/' + conversationId + '/participation',
           headers: { 'Authorization': AUTH_KEY },
           responseType: 'json'
         });
     }
-    getNextComment(conversationId) {
+    restGetNextComment(conversationId) {
         return axios({
             url: "https://polis-api-proxy.herokuapp.com/api/v3/conversations/" + conversationId + "/nextComment",
             method: "get",
@@ -17,7 +22,7 @@ export class PolisGateway {
             headers: { "Authorization": AUTH_KEY }
         });
     }
-    postVote(agid, conversationId, pid, tid, vote) {
+    restPostVote(agid, conversationId, pid, tid, vote) {
         return axios({
             url: "https://polis-api-proxy.herokuapp.com/api/v3/votes",
             method: "post",
@@ -36,7 +41,7 @@ export class PolisGateway {
             },
         })
     }
-    postComment(agid, conversationId, pid, comment) {
+    restPostComment(agid, conversationId, pid, comment) {
         return axios({
             url: "https://polis-api-proxy.herokuapp.com/api/v3/conversations/" + conversationId + "/comments",
             method: "post",
