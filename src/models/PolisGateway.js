@@ -11,36 +11,41 @@ export class PolisGateway {
             }
         });
     }
-    getVote(agid, conversationId, pid, tid, vote) {
-        var params = {
-            agid: agid,
-            conversation_id: conversationId,
-            pid: pid,
-            tid: tid,
-            vote: vote,
-        };
-        var esc = encodeURIComponent;
-        var query = Object.keys(params)
-            .map(k => esc(k) + '=' + esc(params[k]))
-            .join('&');
-
+    postVote(agid, conversationId, pid, tid, vote) {
         return axios({
-            url: "https://polis-api-proxy.herokuapp.com/api/v3/votes?" + query,
-            method: "get",
+            url: "https://polis-api-proxy.herokuapp.com/api/v3/votes",
+            method: "post",
             responseType: 'json',
             headers: {
                 "Authorization": AUTH_KEY,
-            }
+                'accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            data: {
+                agid: agid,
+                conversation_id: conversationId,
+                pid: pid,
+                tid: tid,
+                vote: vote,
+            },
         })
     }
     postComment(agid, conversationId, pid, comment) {
         return axios({
-            "agid": agid,
-            "conversation_id": conversationId,
-            "pid": pid,
-            "txt": comment,
-            "is_seed": true,
-            "vote": -1
+            url: "https://polis-api-proxy.herokuapp.com/api/v3/conversations/" + conversationId + "/comments",
+            method: "post",
+            responseType: 'json',
+            headers: {
+                "Authorization": AUTH_KEY,
+            },
+            data:{
+                "agid": agid,
+                "conversation_id": conversationId,
+                "pid": pid,
+                "txt": comment,
+                "is_seed": true,
+                "vote": -1
+            }
         });
     }
 }

@@ -30,7 +30,7 @@ export class VotePage {
         }
         const agid = 0;
         const pid = new Date().getTime()/1000;
-        return this.gateway.getVote(agid, this.conversation.id, pid, this.conversation.commentData.tid, vote);
+        return this.gateway.postVote(agid, this.conversation.id, pid, this.conversation.commentData.tid, vote);
     }
 }
 
