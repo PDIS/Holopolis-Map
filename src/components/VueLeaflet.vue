@@ -16,6 +16,7 @@
         <v-card-text>
           {{selectedMarker.questions[0].title}}
         </v-card-text>
+        <v-divider color="black" class="mx-5" ></v-divider>
         <v-card-actions>
           <v-btn
             color=""
