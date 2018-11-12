@@ -50,6 +50,7 @@ export default {
   data: function() {
     return {
       displayQuestion: false,
+      conversationId: this.$route.params.id,
       commentData: {"txt":"NO COMMENT!","tid":4,"created":"1505964534704","tweet_id":null,"quote_src_url":null,"is_seed":false,"is_meta":false,"lang":"zh-TW","pid":20,"randomN":3.452099506918079,"remaining":8,"total":8,"translations":[]},
     };
   },
@@ -65,7 +66,7 @@ export default {
     },
     loadNextComment() {
       this.displayQuestion = false;
-      model.loadNextComment().then(commentData => {
+      model.loadNextComment(this.conversationId).then(commentData => {
         this.displayQuestion = true;
         this.commentData = commentData;
       });
