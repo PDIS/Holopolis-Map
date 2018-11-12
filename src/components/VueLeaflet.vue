@@ -8,26 +8,41 @@
       </div>
     </l-map>
     <v-bottom-sheet v-model="sheet">
-      <a v-bind:href="`#/question/${selectedMarker.questions[0].id}`">
         <v-list>
           <v-subheader>{{selectedMarker.questions[0].title}}</v-subheader>
           <v-list-tile
-            v-for="tile in tiles"
-            :key="tile.title"
+            key="Vote"
             @click="sheet = false"
           >
-            <v-list-tile-avatar>
-              <v-avatar size="32px" tile>
-                <img
-                  :src="`https://cdn.vuetifyjs.com/images/bottom-sheets/${tile.img}`"
-                  :alt="tile.title"
-                >
-              </v-avatar>
-            </v-list-tile-avatar>
-            <v-list-tile-title>{{ tile.title }}</v-list-tile-title>
+            <a v-bind:href="`#/question/${selectedMarker.questions[0].id}/`">
+              <v-list-tile-avatar>
+                <v-avatar size="32px" tile>
+                  <img
+                    src="https://cdn.vuetifyjs.com/images/bottom-sheets/keep.png"
+                    alt="Vote"
+                  >
+                </v-avatar>
+              </v-list-tile-avatar>
+              <v-list-tile-title>Vote</v-list-tile-title>
+            </a>
+          </v-list-tile>
+          <v-list-tile
+            key="Share"
+            @click="sheet = false"
+          >
+            <a v-bind:href="`#/question/${selectedMarker.questions[0].id}/`">
+              <v-list-tile-avatar>
+                <v-avatar size="32px" tile>
+                  <img
+                    src="https://cdn.vuetifyjs.com/images/bottom-sheets/messenger.png"
+                    alt="Share"
+                  >
+                </v-avatar>
+              </v-list-tile-avatar>
+              <v-list-tile-title>Share</v-list-tile-title>
+            </a>
           </v-list-tile>
         </v-list>
-      </a>
     </v-bottom-sheet>
   </div>
 </template>
@@ -65,11 +80,7 @@ export default {
                 polis_link: 'http://wrong-link'
             },
         ],
-      },
-      tiles: [
-        { img: 'keep.png', title: 'Vote' },
-        { img: 'messenger.png', title: 'Share' },
-      ]
+      }
     }
   },
   methods: {
