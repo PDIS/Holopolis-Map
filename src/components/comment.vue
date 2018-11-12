@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>Write Comment</div>
-    <v-textarea solo value="">
+    <v-textarea solo v-model="commentInput">
     </v-textarea>
     <div @click="publishComment">
         Send

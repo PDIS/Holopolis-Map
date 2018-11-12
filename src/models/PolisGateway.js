@@ -38,7 +38,7 @@ export class PolisGateway {
             headers: {
                 "Authorization": AUTH_KEY,
             },
-            data:{
+            data: {
                 "agid": agid,
                 "conversation_id": conversationId,
                 "pid": pid,
