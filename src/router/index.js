@@ -7,6 +7,7 @@ import share from '@/components/share'
 import comment from '@/components/comment'
 import login from '@/components/login'
 import intro from '@/components/intro'
+import camera from '@/components/camera'
 
 Vue.use(Router)
 
@@ -51,6 +52,11 @@ export default new Router({
       path: '/intro',
       name: 'intro',
       component: intro
+    },
+    {
+      path: '/camera',
+      name: 'camera',
+      component: camera
     }
   ]
 })
