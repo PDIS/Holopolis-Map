@@ -29,6 +29,7 @@
       :clipped-left="clipped"
       color="teal accent-2"
       align-center
+      v-if="toolbar"
     >
       <!-- <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon> -->
 <!--       <v-btn icon @click.stop="miniVariant = !miniVariant">
@@ -88,7 +89,25 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Holopolis-Map'
+      title: 'Holopolis-Map',
+      toolbar: true,
+    }
+  },
+  methods: {
+    showtoolbar: function() {
+      if (this.$route.name == 'intro') {
+        this.toolbar = false
+      } else {
+        this.toolbar = true
+      }
+    }
+  },
+  created: function() {
+    this.showtoolbar()
+  },
+  watch: {
+    $route: function() {
+      this.showtoolbar()
     }
   },
   name: 'App'
