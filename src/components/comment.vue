@@ -10,8 +10,8 @@
       </v-flex>
       <v-expansion-panel>
           <v-expansion-panel-content v-for="suggestion in suggestions" :key="suggestion.id">
-              <div slot="header">{{suggestion.dotdotdot}}</div>
-              <v-btn @click="goToQuestion(suggestion.id)">{{suggestion.txt}}</v-btn>
+            <div slot="header">{{suggestion.dotdotdot}}</div>
+            <v-btn flat @click="goToQuestion(suggestion.id)">{{suggestion.txt}}</v-btn>
           </v-expansion-panel-content>
       </v-expansion-panel>
       <v-flex xs12 class="mt-3">
