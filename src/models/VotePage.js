@@ -1,4 +1,5 @@
 import { PolisGateway } from '../models/PolisGateway';
+import { CommentStore } from '../models/CommentStore';
 
 export class VotePage {
     constructor() {
@@ -6,6 +7,7 @@ export class VotePage {
         this.conversationId = null;
         this.commentData = null;
         this.participationId = null;
+        this.commentStore = new CommentStore();
     }
     initPage(conversationId) {
         const conversationPromise = this.gateway.restGetConversation(conversationId).then(res => {
@@ -36,6 +38,7 @@ export class VotePage {
         return this.gateway.restGetNextComment(conversationId).then(response => {
             this.commentData = response.data;
             this.conversationId = conversationId;
+            this.commentStore.saveComment(conversationId, this.commentData);
             return this.commentData;
         });
     }
