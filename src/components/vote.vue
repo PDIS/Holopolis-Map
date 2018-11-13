@@ -1,6 +1,6 @@
 <template>
   <v-container grid-list-xs>
-    <v-layout row wrap v-if="isQuestionReady">
+    <v-layout row wrap v-if="isQuestionReady" class="ma-3">
       <v-flex xs12>
         <h4 class="display-1">{{conversationData.topic}}</h4>
       </v-flex>
