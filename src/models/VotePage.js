@@ -7,6 +7,23 @@ export class VotePage {
         this.commentData = null;
         this.participationId = null;
     }
+    loadConversation(conversationId) {
+        return this.gateway.restGetConversation(conversationId).then(res => {
+            let longDescription = null;
+            let description = res.data.description;
+            if (description.length > 100) {
+                longDescription = description;
+                description = description.substr(0, 96) + " ···";
+            }
+            return {
+                topic: res.data.topic,
+                description,
+                shortDescription: description,
+                longDescription,
+                descriptionIsShort: true,
+            };
+        });
+    }
     loadParticipationId(conversationId) {
         return this.gateway.getPid(conversationId).then(pid => {
             this.participationId = pid;
@@ -15,6 +32,7 @@ export class VotePage {
     loadNextComment(conversationId) {
         return this.gateway.restGetNextComment(conversationId).then(response => {
             this.commentData = response.data;
+            console.log(this.commentData);
             this.conversationId = conversationId;
             return this.commentData;
         });

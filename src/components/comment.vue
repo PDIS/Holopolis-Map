@@ -46,6 +46,9 @@ export default {
     };
   },
   methods: {
+      goToQuestion: function(id) {
+
+      },
       backToVote: function() {
         this.$router.push('/vote/' + this.$route.params.id)
       },

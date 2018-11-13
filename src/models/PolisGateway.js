@@ -6,12 +6,20 @@ export class PolisGateway {
             return Object.keys(response.data).length;
         });
     }
+    restGetConversation(conversationId) {
+        return axios({
+            method: 'get',
+            url: 'https://polis-api-proxy.herokuapp.com/api/v3/conversations/' + conversationId,
+            headers: { 'Authorization': AUTH_KEY },
+            responseType: 'json'
+        });
+    }
     restGetParticipation(conversationId) {
         return axios({
-          method: 'get',
-          url: 'https://polis-api-proxy.herokuapp.com/api/v3/conversations/' + conversationId + '/participation',
-          headers: { 'Authorization': AUTH_KEY },
-          responseType: 'json'
+            method: 'get',
+            url: 'https://polis-api-proxy.herokuapp.com/api/v3/conversations/' + conversationId + '/participation',
+            headers: { 'Authorization': AUTH_KEY },
+            responseType: 'json'
         });
     }
     restGetNextComment(conversationId) {

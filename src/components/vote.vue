@@ -2,20 +2,20 @@
   <v-container grid-list-xs>
     <v-layout row wrap>
       <v-flex xs12>
-        <h4 class="display-1">How to bring down atmospheric pollution in Madrid?</h4>
+        <h4 class="display-1">{{conversationData.topic}}</h4>
       </v-flex>
       <v-flex xs12>
-        <div class="body-2 my-3">Madrid City has taken the historic decision in 2016 to prohibit the entry of vehicles in the center of the capital ….</div>
+        <div class="body-2 my-3">{{conversationData.description}}</div>
       </v-flex>
       <v-flex xs12 offset-xs8 offset-md8 offset-lg8>
-        <v-btn flat class="caption" color="grey">Read More</v-btn>
+        <v-btn flat class="caption" color="grey" @click="toggleReadMore()">{{conversationData.descriptionIsShort ? "Read More" : "Read Less"}}</v-btn>
       </v-flex>
       <v-flex xs12>
         <v-card flat color="grey lighten-3">
           <v-container>
             <v-layout row wrap align-center justify-space-center>
               <v-flex xs12 class="mb-5 title">
-                <div>I think we should ban plastic straws and plastic cups in the city</div>
+                <div>{{commentData.txt}}</div>
               </v-flex>
               <v-flex xs4 md4 lg4>
                 <v-btn round color="teal accent-2" @click="voteYes()">Agree</v-btn>
@@ -52,11 +52,18 @@ export default {
   data: function() {
     return {
       displayQuestion: false,
+      conversationData: {},
       conversationId: this.$route.params.id,
       commentData: {"txt":"NO COMMENT!","tid":4,"created":"1505964534704","tweet_id":null,"quote_src_url":null,"is_seed":false,"is_meta":false,"lang":"zh-TW","pid":20,"randomN":3.452099506918079,"remaining":8,"total":8,"translations":[]},
     };
   },
   methods: {
+    toggleReadMore: function() {
+      this.conversationData.descriptionIsShort = !this.conversationData.descriptionIsShort;
+      this.conversationData.description = this.conversationData.descriptionIsShort ? 
+        this.conversationData.shortDescription : 
+        this.conversationData.longDescription;
+    },
     voteYes: function() {
       model.voteYes().then(this.loadNextComment).catch(console.error);
     },
@@ -75,6 +82,7 @@ export default {
     }
   },
   created: function() {
+    model.loadConversation(this.conversationId).then(data => {console.log(data); this.conversationData = data});
     model.loadParticipationId(this.conversationId).catch(err => {
       console.error(err);
       this.$router.push('/login');

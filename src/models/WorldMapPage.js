@@ -37,7 +37,7 @@ export class WorldMapPage {
 				name: 'La Ingobernable',
 				questions: [
 					{
-						id: '9rfmczeith',
+						id: '6amx5ecten',
 						title: 'Do you want to keep La Ingobernable as an open cultural environment?',
 						type: 'social',
 						polis_link: 'http://some-link.com/la-ingobernable-open'
@@ -53,7 +53,7 @@ export class WorldMapPage {
 				name: 'Reina Sofía',
 				questions: [
 					{
-						id: '9rfmczeith',
+						id: '4rffhe8wa9',
 						title: 'Do you want to give free pass to students for visiting the Reina Sofía museum?',
 						type: 'education',
 						polis_link: 'http://some-link.com/reina-sofia-free-students'
