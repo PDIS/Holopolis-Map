@@ -77,8 +77,8 @@ export class WorldMapPage {
 				],
 				coords: {latitude: 40.40817, longitude: -3.69337},
 				icon: L.icon({
-					iconUrl: 'https://github.com/PDIS/Holopolis-Map/blob/master/src/assets/EDUCATION.gif?raw=true',
-					iconSize: [62.6, 72],
+					iconUrl: 'https://github.com/PDIS/Holopolis-Map/blob/master/src/assets/Equality.gif?raw=true',
+					iconSize: [32, 47.2],
 				})
 			},
 		]));

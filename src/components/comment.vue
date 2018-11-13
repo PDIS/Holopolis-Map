@@ -1,6 +1,6 @@
 <template>
   <v-container grid-list-xs>
-    <v-layout row wrap>
+    <v-layout row wrap class="ma-3">
       <v-flex xs12>
         <h4 class="display-1">How to bring down atmospheric pollution in Madrid?</h4>
       </v-flex>
