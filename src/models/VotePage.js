@@ -9,18 +9,21 @@ export class VotePage {
     }
     initPage(conversationId) {
         const conversationPromise = this.gateway.restGetConversation(conversationId).then(res => {
-            let longDescription = null;
             let description = res.data.description;
-            if (description.length > 100) {
-                longDescription = description;
-                description = description.substr(0, 96) + " ···";
+            const longDescription = description;
+            let shortDescription = description;
+            const LIMIT_LENGTH = 100;
+            if (description.length > LIMIT_LENGTH) {
+                shortDescription = description.substr(0, LIMIT_LENGTH - 4) + " ···";
+                description = shortDescription;
             }
             return {
                 topic: res.data.topic,
                 description,
-                shortDescription: description,
+                shortDescription,
                 longDescription,
-                descriptionIsShort: true,
+                descriptionIsLong: longDescription.length > shortDescription.length,
+                toggledShort: true,
             };
         });
         const commentPromise = this.loadNextComment(conversationId);

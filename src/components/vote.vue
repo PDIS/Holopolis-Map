@@ -8,7 +8,7 @@
         <div class="body-2 my-3">{{conversationData.description}}</div>
       </v-flex>
       <v-flex xs12 offset-xs8 offset-md8 offset-lg8>
-        <v-btn flat class="caption" color="grey" @click="toggleReadMore()">{{conversationData.descriptionIsShort ? "Read More" : "Read Less"}}</v-btn>
+        <v-btn v-if="conversationData.descriptionIsLong" flat class="caption" color="grey" @click="toggleReadMore()">{{conversationData.toggledShort ? "Read More" : "Read Less"}}</v-btn>
       </v-flex>
       <v-flex xs12>
         <v-card flat color="grey lighten-3">
@@ -59,8 +59,8 @@ export default {
   },
   methods: {
     toggleReadMore: function() {
-      this.conversationData.descriptionIsShort = !this.conversationData.descriptionIsShort;
-      this.conversationData.description = this.conversationData.descriptionIsShort ? 
+      this.conversationData.toggledShort = !this.conversationData.toggledShort;
+      this.conversationData.description = this.conversationData.toggledShort ? 
         this.conversationData.shortDescription : 
         this.conversationData.longDescription;
     },
