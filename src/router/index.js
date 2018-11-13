@@ -27,7 +27,7 @@ export default new Router({
       component: vote
     },
     {
-      path: '/share/:id',
+      path: '/share/',
       name: 'share',
       component: share
     },
