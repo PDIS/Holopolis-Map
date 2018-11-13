@@ -11,14 +11,13 @@ export class CommentPage {
     loadParticipationId(conversationId) {
         return this.gateway.getPid(conversationId).then(pid => {
             this.participationId = pid;
-            this.comments = this.store.getCommentsByConversationId(conversationId)
-                .map(comment => comment.toLowerCase());
+            this.comments = this.store.getCommentsByConversationId(conversationId);
         });
     }
     getSuggestionsFor(input) {
         input = input.trim().toLowerCase();
         if (input === "") return [];
-        return this.comments.filter(phrase => phrase.txt.includes(input));
+        return this.comments.filter(phrase => phrase.txt.toLowerCase().includes(input));
     }
     publishComment(conversationId, comment) {
         const agid = 0;
