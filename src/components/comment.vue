@@ -15,9 +15,14 @@
           </v-expansion-panel-content>
       </v-expansion-panel>
       <v-flex xs12 class="mt-3">
-        <v-btn color="teal accent-2" @click="publishComment">
-          <v-icon left class="mb-2">record_voice_over</v-icon>Send
-        </v-btn>
+        <v-layout align-center justify-space-between row fill-height>
+          <v-btn color="teal accent-2" @click="backToVote">
+            <v-icon left class="">arrow_back</v-icon>Back
+          </v-btn>
+          <v-btn color="teal accent-2" @click="publishComment">
+            <v-icon left class="">record_voice_over</v-icon>Send
+          </v-btn>
+        </v-layout>
       </v-flex>
     </v-layout>
   </v-container>
@@ -41,8 +46,8 @@ export default {
     };
   },
   methods: {
-      goToQuestion: function(id) {
-
+      backToVote: function() {
+        this.$router.push('/vote/' + this.$route.params.id)
       },
       showSuggestions: function() {
           this.suggestions = model.getSuggestionsFor(this.commentInput);
