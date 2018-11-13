@@ -6,6 +6,7 @@ import vote from '@/components/vote'
 import share from '@/components/share'
 import comment from '@/components/comment'
 import login from '@/components/login'
+import intro from '@/components/intro'
 
 Vue.use(Router)
 
@@ -40,6 +41,11 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: login
+    },
+    {
+      path: '/intro',
+      name: 'intro',
+      component: intro
     }
   ]
 })
