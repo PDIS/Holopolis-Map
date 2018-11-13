@@ -29,8 +29,8 @@ export class WorldMapPage {
 				],
 				coords: {latitude: 40.40613, longitude: -3.6903},
 				icon: L.icon({
-					iconUrl: 'https://github.com/PDIS/Holopolis-Map/blob/master/src/assets/HOLOPOLIS_SPACES.png?raw=true',
-					iconSize: [62.6, 72],
+					iconUrl: 'https://github.com/PDIS/Holopolis-Map/blob/master/src/assets/PublicSpaces.gif?raw=true',
+					iconSize: [32, 47.2],
 				})
 			},
 			{
@@ -45,8 +45,8 @@ export class WorldMapPage {
 				],
 				coords: {latitude: 40.41163, longitude: -3.69293},
 				icon: L.icon({
-					iconUrl: 'https://github.com/PDIS/Holopolis-Map/blob/master/src/assets/HOLOPOLIS_HEALTH.png?raw=true',
-					iconSize: [62.6, 72],
+					iconUrl: 'https://github.com/PDIS/Holopolis-Map/blob/master/src/assets/Health.gif?raw=true',
+					iconSize: [32, 47.2],
 				})
 			},
 			{
@@ -62,7 +62,7 @@ export class WorldMapPage {
 				coords: {latitude: 40.40817, longitude: -3.69437},
 				icon: L.icon({
 					iconUrl: 'https://github.com/PDIS/Holopolis-Map/blob/master/src/assets/EDUCATION.gif?raw=true',
-					iconSize: [62.6, 72],
+					iconSize: [32, 47.2],
 				})
 			},
 			{

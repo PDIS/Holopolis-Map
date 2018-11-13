@@ -3,7 +3,7 @@
     <v-btn fixed right top flat color="cyan" style="z-index:100" large to="index" exact>
       skip
     </v-btn>
-    <v-carousel :height="clientHeight" hide-delimiters>
+    <v-carousel :height="clientHeight" hide-delimiters interval="99999999999">
       <v-carousel-item
         v-for="(item,i) in items"
         :key="i"
