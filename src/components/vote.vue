@@ -1,6 +1,6 @@
 <template>
   <v-container grid-list-xs>
-    <v-layout row wrap>
+    <v-layout row wrap v-if="isQuestionReady">
       <v-flex xs12>
         <h4 class="display-1">{{conversationData.topic}}</h4>
       </v-flex>
@@ -51,7 +51,7 @@ export default {
   },
   data: function() {
     return {
-      displayQuestion: false,
+      isQuestionReady: false,
       conversationData: {},
       conversationId: this.$route.params.id,
       commentData: {"txt":"NO COMMENT!","tid":4,"created":"1505964534704","tweet_id":null,"quote_src_url":null,"is_seed":false,"is_meta":false,"lang":"zh-TW","pid":20,"randomN":3.452099506918079,"remaining":8,"total":8,"translations":[]},
@@ -74,20 +74,24 @@ export default {
       model.skipVote().then(this.loadNextComment).catch(console.error);
     },
     loadNextComment() {
-      this.displayQuestion = false;
+      this.isQuestionReady = false;
       model.loadNextComment(this.conversationId).then(commentData => {
-        this.displayQuestion = true;
         this.commentData = commentData;
+        this.isQuestionReady = true;
       });
     }
   },
   created: function() {
-    model.loadConversation(this.conversationId).then(data => {console.log(data); this.conversationData = data});
-    model.loadParticipationId(this.conversationId).catch(err => {
-      console.error(err);
-      this.$router.push('/login');
-    });
-    this.loadNextComment();
+    model.initPage(this.conversationId)
+      .then(([conversationData, commentData, _]) => {
+        this.commentData = commentData;
+        this.conversationData = conversationData;
+        this.isQuestionReady = true;
+      })
+      .catch(err => {
+        console.error(err);
+        this.$router.push('/login');
+      });
   }
 }
 </script>
