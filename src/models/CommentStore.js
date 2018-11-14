@@ -7,7 +7,6 @@ export class CommentStore {
     }
 
     saveComment(conversationId, commentData) {
-        console.log(conversationId, commentData);
         this.store[conversationId] = this.store[conversationId] || {};
         commentData.dotdotdot = commentData.txt;
         const LIMIT_LENGTH = 100;
