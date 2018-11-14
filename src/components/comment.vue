@@ -32,6 +32,12 @@
       <v-card>
         <v-card-title class="headline">Thanks for giving opinions</v-card-title>
         <v-card-actions>
+          <v-btn color="cyan" flat="flat" @click="thankscard = false">
+            Cancel
+          </v-btn>
+          <v-spacer></v-spacer>
+          <v-btn color="cyan" flat="flat" :to="{name: 'vote', params: {id: this.conversationId}}">
+            Back to vote
           </v-btn>
         </v-card-actions>
       </v-card>
