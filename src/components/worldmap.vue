@@ -32,14 +32,37 @@
             <v-btn
               color=""
               flat="flat"
-              @click="dialog = false"
-              :to="{name:'share', params: {id: conversation.conversation_id}}"
+              @click="share = true; shareConversation = conversation"
             >
             <v-icon left>share</v-icon>
               Share
             </v-btn>
           </v-card-actions>
         </div>
+      </v-card>
+    </v-dialog>
+    <v-dialog
+      v-model="share"
+      max-width="290"
+    >
+      <v-card v-if="shareConversation != null">
+        <social-sharing
+          :url="`https://pol.is/${shareConversation.conversation_id}`"
+          :title="`I just spotted this debate: \n\n${shareConversation.topic}\n\nCheck it out and join me contributing opinions to our city issues!\n\n`"
+          inline-template
+        >
+          <div>
+            <network network="facebook">
+              <i class="fa fa-fw fa-facebook"></i> Facebook
+            </network>
+            <network network="twitter">
+              <i class="fa fa-fw fa-twitter"></i> Twitter
+            </network>
+            <network network="whatsapp">
+              <i class="fa fa-fw fa-whatsapp"></i> Whatsapp
+            </network>
+          </div>
+        </social-sharing>
       </v-card>
     </v-dialog>
   </div>
@@ -70,6 +93,8 @@ export default {
       markers: [],
       dialog: false,
       selectedMarker: null,
+      shareConversation: null,
+      share: false,
     }
   },
   methods: {

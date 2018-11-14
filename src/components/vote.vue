@@ -12,7 +12,7 @@
       </v-flex>
       <v-flex xs12>
         <v-card flat color="grey lighten-3">
-          <v-container>
+          <v-container v-if="opinionData !== null">
             <v-layout row wrap>
               <v-flex xs12>
                 <div class="mb-5 title">{{opinionData.txt}}</div>
@@ -52,7 +52,7 @@ export default {
       isConversationReady: false,
       conversationData: {},
       conversationId: this.$route.params.id,
-      opinionData: {"txt":"NO COMMENT!","tid":4,"created":"1505964534704","tweet_id":null,"quote_src_url":null,"is_seed":false,"is_meta":false,"lang":"zh-TW","pid":20,"randomN":3.452099506918079,"remaining":8,"total":8,"translations":[]},
+      opinionData: null,
     };
   },
   methods: {
