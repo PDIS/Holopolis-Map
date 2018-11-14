@@ -1,8 +1,6 @@
 <template>
   <div>
     <qrcode-stream @decode="onDecode">
-     <!--  <v-img :aspect-ratio="16/9" dark src="https://static-cdn.jtvnw.net/jtv_user_pictures/e91a3dcf-c15a-441a-b369-996922364cdc-profile_image-300x300.png" style="opacity: 0.45">
-      </v-img> -->
       <v-card color="black" dark style="opacity: 0.45">
         <v-card-title primary-title>
           <div>
