@@ -49,17 +49,21 @@
         <social-sharing
           :url="`https://pol.is/${shareConversation.conversation_id}`"
           :title="`I just spotted this debate: \n\n${shareConversation.topic}\n\nCheck it out and join me contributing opinions to our city issues!\n\n`"
+          :description="`I just spotted this debate: \n\n${shareConversation.topic}\n\nCheck it out and join me contributing opinions to our city issues!\n\n`"
+          :quote="`I just spotted this debate: \n\n${shareConversation.topic}\n\nCheck it out and join me contributing opinions to our city issues!\n\n`"
+          hashtags="polis,democracy"
+          twitter-user="polis"
           inline-template
         >
           <div>
             <network network="facebook">
-              <i class="fa fa-fw fa-facebook"></i> Facebook
+              <i class="fa fa-fw fa-facebook"></i><v-icon left>share</v-icon>Facebook
             </network>
             <network network="twitter">
-              <i class="fa fa-fw fa-twitter"></i> Twitter
+              <i class="fa fa-fw fa-twitter"></i><v-icon left>share</v-icon>Twitter
             </network>
             <network network="whatsapp">
-              <i class="fa fa-fw fa-whatsapp"></i> Whatsapp
+              <i class="fa fa-fw fa-whatsapp"></i><v-icon left>share</v-icon>Whatsapp
             </network>
           </div>
         </social-sharing>

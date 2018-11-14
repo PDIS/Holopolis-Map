@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import worldmap from '@/components/worldmap'
 import index from '@/components/index'
 import vote from '@/components/vote'
-import share from '@/components/share'
 import opinion from '@/components/opinion'
 import login from '@/components/login'
 import intro from '@/components/intro'
@@ -32,11 +31,6 @@ export default new Router({
       path: '/vote/:id',
       name: 'vote',
       component: vote
-    },
-    {
-      path: '/share/',
-      name: 'share',
-      component: share
     },
     {
       path: '/opinion/:id',
