@@ -13,25 +13,23 @@
       <v-flex xs12>
         <v-card flat color="grey lighten-3">
           <v-container>
-            <v-layout row wrap align-center justify-space-center>
-              <v-flex xs12 class="mb-5 title">
-                <div>{{commentData.txt}}</div>
+            <v-layout row wrap>
+              <v-flex xs12>
+                <div class="mb-5 title">{{commentData.txt}}</div>
               </v-flex>
-              <v-flex xs4 md4 lg4>
-                <v-btn round color="teal accent-2" @click="voteYes()">Agree</v-btn>
-              </v-flex>
-              <v-flex xs4 md4 lg4>
-                <v-btn round color="teal accent-2" @click="voteNo()">Disagree</v-btn>
-              </v-flex>
-              <v-flex xs4 md4 lg4>
-                <v-btn round color="teal accent-2" @click="skipVote()">Pass</v-btn>
-              </v-flex>
+            </v-layout>
+            <v-layout align-center justify-center row fill-height>
+              <v-btn round color="teal accent-2" @click="voteYes()">Agree</v-btn>
+              <v-btn round color="teal accent-2" @click="voteNo()">Disagree</v-btn>
+              <v-btn round color="teal accent-2" @click="skipVote()">Pass</v-btn>
             </v-layout>
           </v-container>
         </v-card>
       </v-flex>
       <v-flex xs12 class="mt-5">
-        <v-btn flat color="teal accent-4" class="headline font-weight-light" :to="{name:'comment', params: {id:this.conversationId}}">Give your opinion</v-btn>
+        <v-layout align-center justify-center row fill-height>
+          <v-btn outline color="teal accent-4" class="headline font-weight-light" :to="{name:'comment', params: {id:this.conversationId}}">Give your opinion</v-btn>
+        </v-layout>
       </v-flex>
     </v-layout>
   </v-container>
