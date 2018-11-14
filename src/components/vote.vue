@@ -13,19 +13,16 @@
       <v-flex xs12>
         <v-card flat color="grey lighten-3">
           <v-container>
-            <v-layout row wrap align-center justify-space-center>
-              <v-flex xs12 class="mb-5 title">
+            <v-layout row wrap>
+              <div class="mb-5 title">{{commentData.txt}}</div>
+            </v-layout>
+            <v-layout align-center justify-center row fill-height>
+     <!--          <v-flex xs12 class="mb-5 title">
                 <div>{{commentData.txt}}</div>
-              </v-flex>
-              <v-flex xs4 md4 lg4>
+              </v-flex> -->
                 <v-btn round color="teal accent-2" @click="voteYes()">Agree</v-btn>
-              </v-flex>
-              <v-flex xs4 md4 lg4>
                 <v-btn round color="teal accent-2" @click="voteNo()">Disagree</v-btn>
-              </v-flex>
-              <v-flex xs4 md4 lg4>
                 <v-btn round color="teal accent-2" @click="skipVote()">Pass</v-btn>
-              </v-flex>
             </v-layout>
           </v-container>
         </v-card>
