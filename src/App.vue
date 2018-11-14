@@ -53,7 +53,7 @@
     </v-toolbar>
     <v-content>
       <v-dialog v-model="info" full-width>
-      <v-carousel hide-controls>
+      <v-carousel hide-controls interval="99999">
         <v-carousel-item style="opacity:0.5" v-for="(item,i) in items" :key="i" src="https://static-cdn.jtvnw.net/jtv_user_pictures/e91a3dcf-c15a-441a-b369-996922364cdc-profile_image-300x300.png">
           <v-jumbotron dark>
             <v-container fill-height>

@@ -30,7 +30,7 @@
       max-width="290"
     >
       <v-card>
-        <v-card-title class="headline">Thanks for giving opinions</v-card-title>
+        <v-card-title class="title">Thanks for giving opinions!</v-card-title>
         <v-card-actions>
           <v-btn color="cyan" flat="flat" @click="thankscard = false">
             Cancel
