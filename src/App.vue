@@ -36,7 +36,7 @@
         <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
       </v-btn> -->
        <v-layout align-center justify-space-between row fill-height>
-        <v-btn icon @click.stop="clipped = !clipped">
+        <v-btn icon @click.native="showinfo()">
           <v-icon large>info</v-icon>
         </v-btn>
         <v-btn flat to="/index" exact active-class="">
@@ -52,6 +52,22 @@
       <v-toolbar-title v-text="title"></v-toolbar-title> -->
     </v-toolbar>
     <v-content>
+      <v-dialog v-model="info" full-width>
+      <v-carousel hide-controls>
+        <v-carousel-item style="opacity:0.5" v-for="(item,i) in items" :key="i" src="https://static-cdn.jtvnw.net/jtv_user_pictures/e91a3dcf-c15a-441a-b369-996922364cdc-profile_image-300x300.png">
+          <v-jumbotron dark>
+            <v-container fill-height>
+              <v-layout align-center>
+                <v-flex>
+                  <h3 class="headline mb-0 cyan--text">{{item.title}}</h3>
+                  <div>{{item.text}}</div>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-jumbotron>
+        </v-carousel-item>
+      </v-carousel>
+      </v-dialog>
       <router-view/>
     </v-content>
 <!--     <v-navigation-drawer
@@ -83,15 +99,26 @@ export default {
       clipped: false,
       drawer: false,
       fixed: false,
-      items: [{
-        icon: 'bubble_chart',
-        title: 'Inspire'
-      }],
+      items: [
+        {
+          title: 'Ready?',
+          text: 'Click on the icons below and explore the debates in your area!'
+        },
+        {
+         title: 'Scan the sticker',
+          text: 'If you find Holopolis sticker on the street, scan it and enter the conversation.'
+        },
+        {
+          title: 'For more information',
+          text: 'Click on information icon at the upper left corner to find out more.'
+        },
+      ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
       title: 'Holopolis-Map',
       toolbar: true,
+      info: false,
     }
   },
   methods: {
@@ -101,6 +128,10 @@ export default {
       } else {
         this.toolbar = true
       }
+    },
+    showinfo: function() {
+      console.log(this.info)
+      this.info = !this.info
     }
   },
   created: function() {
