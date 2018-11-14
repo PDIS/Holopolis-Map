@@ -48,9 +48,9 @@
       <v-card v-if="shareConversation != null">
         <social-sharing
           :url="`https://pol.is/${shareConversation.conversation_id}`"
-          :title="`I just spotted this debate: \n\n${shareConversation.topic}\n\nCheck it out and join me contributing opinions to our city issues!\n\n`"
-          :description="`I just spotted this debate: \n\n${shareConversation.topic}\n\nCheck it out and join me contributing opinions to our city issues!\n\n`"
-          :quote="`I just spotted this debate: \n\n${shareConversation.topic}\n\nCheck it out and join me contributing opinions to our city issues!\n\n`"
+          :title="`I just spotted this conversation: \n\n${shareConversation.topic}\n\nCheck it out and join me contributing opinions to our city issues!\n\n`"
+          :description="`I just spotted this conversation: \n\n${shareConversation.topic}\n\nCheck it out and join me contributing opinions to our city issues!\n\n`"
+          :quote="`I just spotted this conversation: \n\n${shareConversation.topic}\n\nCheck it out and join me contributing opinions to our city issues!\n\n`"
           hashtags="polis,democracy"
           twitter-user="polis"
           inline-template
