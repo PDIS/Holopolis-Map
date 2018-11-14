@@ -13,31 +13,33 @@
     >
       <v-card v-if="selectedMarker !== null">
         <img src="@/assets/marker.png" height="36" width="31.3" class="ml-3 mt-3">
-        <v-card-text>
-          {{selectedMarker.questions[0].topic}}
-        </v-card-text>
-        <v-divider color="black" class="mx-5" ></v-divider>
-        <v-card-actions>
-          <v-btn
-            color=""
-            flat="flat"
-            @click="dialog = false"
-            :to="{name:'vote', params: {id: selectedMarker.questions[0].conversation_id}}"
-          >
-          <v-icon left>check_box</v-icon>
-            Vote
-          </v-btn>
-          <v-spacer></v-spacer>
-          <v-btn
-            color=""
-            flat="flat"
-            @click="dialog = false"
-            :to="{name:'share', params: {id:selectedMarker.questions[0].conversation_id}}"
-          >
-          <v-icon left>share</v-icon>
-            Share
-          </v-btn>
-        </v-card-actions>
+        <div v-for="(question, i) in selectedMarker.questions" :key="i">
+          <v-card-text>
+            {{question.topic}}
+          </v-card-text>
+          <v-divider color="black" class="mx-5" ></v-divider>
+          <v-card-actions>
+            <v-btn
+              color=""
+              flat="flat"
+              @click="dialog = false"
+              :to="{name:'vote', params: {id: question.conversation_id}}"
+            >
+            <v-icon left>check_box</v-icon>
+              Vote
+            </v-btn>
+            <v-spacer></v-spacer>
+            <v-btn
+              color=""
+              flat="flat"
+              @click="dialog = false"
+              :to="{name:'share', params: {id: question.conversation_id}}"
+            >
+            <v-icon left>share</v-icon>
+              Share
+            </v-btn>
+          </v-card-actions>
+        </div>
       </v-card>
     </v-dialog>
   </div>
