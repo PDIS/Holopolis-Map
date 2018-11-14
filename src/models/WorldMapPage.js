@@ -5,8 +5,9 @@ export class WorldMapPage {
 		this.gateway = new PolisGateway();
 		this.markers = [
 			{
+				id: 1,
 				name: 'Atocha',
-				questions: ['92km3zkksd'],
+				conversation_ids: ['92km3zkksd'],
 				coords: {latitude: 40.40613, longitude: -3.6903},
 				icon: L.icon({
 					iconUrl: 'https://github.com/PDIS/Holopolis-Map/blob/master/src/assets/PublicSpaces.gif?raw=true',
@@ -14,8 +15,9 @@ export class WorldMapPage {
 				})
 			},
 			{
+				id: 2,
 				name: 'La Ingobernable',
-				questions: ['3n3dxmbjwt'],
+				conversation_ids: ['3n3dxmbjwt'],
 				coords: {latitude: 40.41163, longitude: -3.69293},
 				icon: L.icon({
 					iconUrl: 'https://github.com/PDIS/Holopolis-Map/blob/master/src/assets/Health.gif?raw=true',
@@ -23,8 +25,9 @@ export class WorldMapPage {
 				})
 			},
 			{
+				id: 3,
 				name: 'Reina Sofía',
-				questions: ['6rhkfnv8v7'],
+				conversation_ids: ['6rhkfnv8v7'],
 				coords: {latitude: 40.40817, longitude: -3.69437},
 				icon: L.icon({
 					iconUrl: 'https://github.com/PDIS/Holopolis-Map/blob/master/src/assets/EDUCATION.gif?raw=true',
@@ -32,8 +35,9 @@ export class WorldMapPage {
 				})
 			},
 			{
+				id: 4,
 				name: 'Reina Sofía',
-				questions: ['5n8hnwcdmt'],
+				conversation_ids: ['5n8hnwcdmt'],
 				coords: {latitude: 40.40817, longitude: -3.69337},
 				icon: L.icon({
 					iconUrl: 'https://github.com/PDIS/Holopolis-Map/blob/master/src/assets/Equality.gif?raw=true',
@@ -58,17 +62,18 @@ export class WorldMapPage {
 		});
 	}
 	getMarkerInfo(marker) {
-		if (marker.questions.filter(question => question.topic != undefined).length === marker.questions.length) {
-			return new Promise(resolve => resolve(marker));
+		if (marker.conversation_ids != undefined) {
+			return new Promise(resolve => resolve([marker, this.markers]));
 		}
-		const promises = marker.questions
-			.map(question => this.gateway.restGetConversation(question))
+		const promises = marker.conversation_ids
+			.map(conversation_id => this.gateway.restGetConversation(conversation_id))
 			.map(promise => promise.then(res => res.data));
 
 		return Promise.all(promises).then(results => {
-			const newMarker = JSON.parse(JSON.stringify(marker));
-			newMarker.questions = results;
-			return newMarker;
+			const newMarker = Object.assign({conversations: results}, marker);
+			this.markers = this.markers.filter(marker => marker.id !== newMarker.id);
+			this.markers.push(newMarker);
+			return [newMarker, this.markers];
 		})
 	}
 	getMapMarkers() {

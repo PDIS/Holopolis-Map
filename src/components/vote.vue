@@ -1,6 +1,6 @@
 <template>
   <v-container grid-list-xs>
-    <v-layout row wrap v-if="isQuestionReady" class="ma-3">
+    <v-layout row wrap v-if="isConversationReady" class="ma-3">
       <v-flex xs12>
         <h4 class="display-1">{{conversationData.topic}}</h4>
       </v-flex>
@@ -49,7 +49,7 @@ export default {
   },
   data: function() {
     return {
-      isQuestionReady: false,
+      isConversationReady: false,
       conversationData: {},
       conversationId: this.$route.params.id,
       commentData: {"txt":"NO COMMENT!","tid":4,"created":"1505964534704","tweet_id":null,"quote_src_url":null,"is_seed":false,"is_meta":false,"lang":"zh-TW","pid":20,"randomN":3.452099506918079,"remaining":8,"total":8,"translations":[]},
@@ -72,10 +72,10 @@ export default {
       model.skipVote().then(this.loadNextComment).catch(console.error);
     },
     loadNextComment() {
-      this.isQuestionReady = false;
+      this.isConversationReady = false;
       model.loadNextComment(this.conversationId).then(commentData => {
         this.commentData = commentData;
-        this.isQuestionReady = true;
+        this.isConversationReady = true;
       });
     }
   },
@@ -84,7 +84,7 @@ export default {
       .then(([conversationData, commentData, _]) => {
         this.commentData = commentData;
         this.conversationData = conversationData;
-        this.isQuestionReady = true;
+        this.isConversationReady = true;
       })
       .catch(err => {
         console.error(err);

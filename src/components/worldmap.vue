@@ -13,9 +13,9 @@
     >
       <v-card v-if="selectedMarker !== null">
         <img src="@/assets/marker.png" height="36" width="31.3" class="ml-3 mt-3">
-        <div v-for="(question, i) in selectedMarker.questions" :key="i">
+        <div v-for="(conversation, i) in selectedMarker.conversations" :key="i">
           <v-card-text>
-            {{question.topic}}
+            {{conversation.topic}}
           </v-card-text>
           <v-divider color="black" class="mx-5" ></v-divider>
           <v-card-actions>
@@ -23,7 +23,7 @@
               color=""
               flat="flat"
               @click="dialog = false"
-              :to="{name:'vote', params: {id: question.conversation_id}}"
+              :to="{name:'vote', params: {id: conversation.conversation_id}}"
             >
             <v-icon left>check_box</v-icon>
               Vote
@@ -33,7 +33,7 @@
               color=""
               flat="flat"
               @click="dialog = false"
-              :to="{name:'share', params: {id: question.conversation_id}}"
+              :to="{name:'share', params: {id: conversation.conversation_id}}"
             >
             <v-icon left>share</v-icon>
               Share
@@ -82,7 +82,8 @@ export default {
       this.markers = markers;
     },
     selectMarker: function(marker) {
-      model.getMarkerInfo(marker).then(filledMarker => {
+      model.getMarkerInfo(marker).then(([filledMarker, markers]) => {
+        this.markers = markers;
         this.selectedMarker = filledMarker;
         this.dialog = true;
       })
