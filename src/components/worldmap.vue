@@ -65,6 +65,9 @@
             <network network="whatsapp">
               <i class="fa fa-fw fa-whatsapp"></i><v-icon left>share</v-icon>Whatsapp
             </network>
+            <network network="telegram">
+              <i class="fa fa-telegram"></i><v-icon left>share</v-icon>Telegram
+            </network>
           </div>
         </social-sharing>
         <v-btn
