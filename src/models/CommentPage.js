@@ -6,13 +6,16 @@ export class CommentPage {
         this.gateway = new PolisGateway();
         this.store = new CommentStore();
         this.participationId = null;
+        this.pidPromise = null;
         this.comments = [];
     }
-    loadParticipationId(conversationId) {
-        return this.gateway.getPid(conversationId).then(pid => {
+    initPage(conversationId) {
+        this.pidPromise = this.gateway.getPid(conversationId).then(pid => {
             this.participationId = pid;
             this.comments = this.store.getCommentsByConversationId(conversationId);
         });
+        return Promise.all([this.gateway.restGetConversation(conversationId), this.pidPromise])
+            .then(([conversationResponse, _]) => conversationResponse.data);
     }
     getSuggestionsFor(input) {
         input = input.trim().toLowerCase();
@@ -24,12 +27,9 @@ export class CommentPage {
         if (this.participationId === null) {
             throw new Error("load participation id first!");
         }
-        return this.gateway.getPid(conversationId).then(pid => {
-            return this.gateway.restPostComment(agid, conversationId, pid, comment)
-        }).then(res => {
-            console.log(res.data);
-            this.store.saveComment(conversationId, res.data);
-        });
+        return this.pidPromise
+            .then(pid => this.gateway.restPostComment(agid, conversationId, pid, comment))
+            .then(res => this.store.saveComment(conversationId, Object.assign({txt: comment}, res.data)));
     }
 }
 

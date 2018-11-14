@@ -7,6 +7,7 @@ export class CommentStore {
     }
 
     saveComment(conversationId, commentData) {
+        console.log(conversationId, commentData);
         this.store[conversationId] = this.store[conversationId] || {};
         commentData.dotdotdot = commentData.txt;
         const LIMIT_LENGTH = 100;
@@ -18,13 +19,11 @@ export class CommentStore {
 
 
     getCommentsByConversationId(conversationId) {
-        console.log(this.store, this.store[conversationId], conversationId);
         if (!this.store[conversationId]) {
             return [];
         }
         const result = Object.keys(this.store[conversationId])
             .map(commentId => this.store[conversationId][commentId]);
-        console.log(result);
         return result;
     }
 

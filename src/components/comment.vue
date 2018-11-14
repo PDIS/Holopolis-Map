@@ -1,8 +1,8 @@
 <template>
-  <v-container grid-list-xs>
+  <v-container grid-list-xs v-if="conversation !== null">
     <v-layout row wrap class="ma-3">
       <v-flex xs12>
-        <h4 class="display-1">How to bring down atmospheric pollution in Madrid?</h4>
+        <h4 class="display-1">{{conversation.topic}}</h4>
       </v-flex>
       <v-flex xs12 class="mt-5">
         <v-textarea solo v-model="commentInput" @keyup="showSuggestions()">
@@ -40,6 +40,7 @@ export default {
     },
   data: function() {
     return {
+        conversation: null,
         conversationId: this.$route.params.id,
         commentInput: "",
         suggestions: [],
@@ -66,7 +67,11 @@ export default {
       },
   },
   created: function() {
-      model.loadParticipationId(this.conversationId).catch(err => {
+      model.initPage(this.conversationId)
+      .then(conversation => {
+        this.conversation = conversation;
+      })
+      .catch(err => {
         console.error(err);
         this.$router.push('/login');
       });

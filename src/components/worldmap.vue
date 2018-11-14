@@ -25,7 +25,7 @@
               @click="dialog = false"
               :to="{name:'vote', params: {id: conversation.conversation_id}}"
             >
-            <v-icon left>check_box</v-icon>
+              <v-icon left>check_box</v-icon>
               Vote
             </v-btn>
             <v-spacer></v-spacer>
