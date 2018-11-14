@@ -42,7 +42,7 @@
         <v-btn flat to="/index" exact active-class="">
         <img src="@/assets/logo.png" height="40" width="143.2">
         </v-btn>
-        <v-btn icon>
+        <v-btn icon to="/camera" exact>
           <v-icon large>photo_camera</v-icon>
         </v-btn>
       </v-layout>

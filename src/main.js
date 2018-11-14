@@ -6,8 +6,10 @@ import router from './router'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import 'leaflet/dist/leaflet.css';
+import VueQrcodeReader from 'vue-qrcode-reader'
 
 Vue.use(Vuetify)
+Vue.use(VueQrcodeReader)
 
 Vue.config.productionTip = false
 /* leaflet icon */
