@@ -6,11 +6,7 @@ export class WorldMapPage {
 		this.markers = [
 			{
 				name: 'Atocha',
-				questions: [
-					{
-						id: '92km3zkksd',
-					},
-				],
+				questions: ['92km3zkksd'],
 				coords: {latitude: 40.40613, longitude: -3.6903},
 				icon: L.icon({
 					iconUrl: 'https://github.com/PDIS/Holopolis-Map/blob/master/src/assets/PublicSpaces.gif?raw=true',
@@ -19,11 +15,7 @@ export class WorldMapPage {
 			},
 			{
 				name: 'La Ingobernable',
-				questions: [
-					{
-						id: '3n3dxmbjwt',
-					},
-				],
+				questions: ['3n3dxmbjwt'],
 				coords: {latitude: 40.41163, longitude: -3.69293},
 				icon: L.icon({
 					iconUrl: 'https://github.com/PDIS/Holopolis-Map/blob/master/src/assets/Health.gif?raw=true',
@@ -32,11 +24,7 @@ export class WorldMapPage {
 			},
 			{
 				name: 'Reina Sofía',
-				questions: [
-					{
-						id: '6rhkfnv8v7',
-					},
-				],
+				questions: ['6rhkfnv8v7'],
 				coords: {latitude: 40.40817, longitude: -3.69437},
 				icon: L.icon({
 					iconUrl: 'https://github.com/PDIS/Holopolis-Map/blob/master/src/assets/EDUCATION.gif?raw=true',
@@ -45,11 +33,7 @@ export class WorldMapPage {
 			},
 			{
 				name: 'Reina Sofía',
-				questions: [
-					{
-						id: '5n8hnwcdmt',
-					},
-				],
+				questions: ['5n8hnwcdmt'],
 				coords: {latitude: 40.40817, longitude: -3.69337},
 				icon: L.icon({
 					iconUrl: 'https://github.com/PDIS/Holopolis-Map/blob/master/src/assets/Equality.gif?raw=true',
@@ -78,7 +62,7 @@ export class WorldMapPage {
 			return new Promise(resolve => resolve(marker));
 		}
 		const promises = marker.questions
-			.map(question => this.gateway.restGetConversation(question.id))
+			.map(question => this.gateway.restGetConversation(question))
 			.map(promise => promise.then(res => res.data));
 
 		return Promise.all(promises).then(results => {
