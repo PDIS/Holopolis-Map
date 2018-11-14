@@ -14,6 +14,9 @@ export class WorldMapPage {
 			return this.getMapDefaultCenter();
 		});
 	}
+	getQuestionsByMarker(marker) {
+		
+	}
 	getMapMarkers() {
 		return new Promise(resolve => resolve([
 			{

@@ -40,42 +40,6 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-    <!-- <v-bottom-sheet v-model="sheet">
-        <v-list>
-          <v-subheader>{{selectedMarker.questions[0].title}}</v-subheader>
-          <v-list-tile
-            key="Vote"
-            @click="sheet = false"
-             :to="{name:'vote', params: {id:selectedMarker.questions[0].id}}"
-          >
-              <v-list-tile-avatar>
-                <v-avatar size="32px" tile>
-                  <img
-                    src="https://cdn.vuetifyjs.com/images/bottom-sheets/keep.png"
-                    alt="Vote"
-                  >
-                </v-avatar>
-              </v-list-tile-avatar>
-              <v-list-tile-title>Vote</v-list-tile-title>
-          </v-list-tile>
-          <v-list-tile
-            key="Share"
-            @click="sheet = false"
-            :to="{name:'share', params: {id:selectedMarker.questions[0].id}}"
-          >
-        
-              <v-list-tile-avatar>
-                <v-avatar size="32px" tile>
-                  <img
-                    src="https://cdn.vuetifyjs.com/images/bottom-sheets/messenger.png"
-                    alt="Share"
-                  >
-                </v-avatar>
-              </v-list-tile-avatar>
-              <v-list-tile-title>Share</v-list-tile-title>
-          </v-list-tile>
-        </v-list>
-    </v-bottom-sheet> -->
   </div>
 </template>
 
@@ -101,7 +65,7 @@ export default {
     return {
       zoom: 13,
       center: L.latLng(center.coords.latitude, center.coords.longitude),
-      url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+      url: 'https://{s}.tile.osm.org/{z}/{x}/{y}.png',
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       markers: [],
       dialog: false,
