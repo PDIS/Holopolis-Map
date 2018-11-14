@@ -62,7 +62,7 @@ export class WorldMapPage {
 		});
 	}
 	getMarkerInfo(marker) {
-		if (marker.conversation_ids != undefined) {
+		if (marker.conversations != undefined) {
 			return new Promise(resolve => resolve([marker, this.markers]));
 		}
 		const promises = marker.conversation_ids
