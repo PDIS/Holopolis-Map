@@ -25,6 +25,17 @@
         </v-layout>
       </v-flex>
     </v-layout>
+     <v-dialog
+      v-model="thankscard"
+      max-width="290"
+    >
+      <v-card>
+        <v-card-title class="headline">Thanks for giving opinions</v-card-title>
+        <v-card-actions>
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -43,6 +54,7 @@ export default {
         conversationId: this.$route.params.id,
         commentInput: "",
         suggestions: [],
+        thankscard: false
     };
   },
   methods: {
@@ -58,7 +70,8 @@ export default {
       publishComment: function() {
           model.publishComment(this.conversationId, this.commentInput).then(() => {
               console.log("go back to vote again");
-              this.$router.push({name: 'vote', params: {id: this.conversationId}});
+              this.thankscard = true
+              //this.$router.push({name: 'vote', params: {id: this.conversationId}});
           }).catch(err => {
               console.log("server failure, try again later");
               console.error(err);
