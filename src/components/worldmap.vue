@@ -67,6 +67,11 @@
             </network>
           </div>
         </social-sharing>
+        <v-btn
+          @click="share = false"
+        >
+          Cancel
+        </v-btn>
       </v-card>
     </v-dialog>
   </div>
