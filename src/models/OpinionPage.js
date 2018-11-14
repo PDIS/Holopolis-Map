@@ -1,18 +1,18 @@
 import { PolisGateway } from '../models/PolisGateway';
-import { CommentStore } from '../models/CommentStore';
+import { OpinionStore } from '../models/OpinionStore';
 
-export class CommentPage {
+export class OpinionPage {
     constructor() {
         this.gateway = new PolisGateway();
-        this.store = new CommentStore();
+        this.store = new OpinionStore();
         this.participationId = null;
         this.pidPromise = null;
-        this.comments = [];
+        this.opinions = [];
     }
     initPage(conversationId) {
         this.pidPromise = this.gateway.getPid(conversationId).then(pid => {
             this.participationId = pid;
-            this.comments = this.store.getCommentsByConversationId(conversationId);
+            this.opinions = this.store.getOpinionsByConversationId(conversationId);
         });
         return Promise.all([this.gateway.restGetConversation(conversationId), this.pidPromise])
             .then(([conversationResponse, _]) => conversationResponse.data);
@@ -20,16 +20,16 @@ export class CommentPage {
     getSuggestionsFor(input) {
         input = input.trim().toLowerCase();
         if (input === "") return [];
-        return this.comments.filter(phrase => phrase.txt.toLowerCase().includes(input));
+        return this.opinions.filter(phrase => phrase.txt.toLowerCase().includes(input));
     }
-    publishComment(conversationId, comment) {
+    publishOpinion(conversationId, opinion) {
         const agid = 0;
         if (this.participationId === null) {
             throw new Error("load participation id first!");
         }
         return this.pidPromise
-            .then(pid => this.gateway.restPostComment(agid, conversationId, pid, comment))
-            .then(res => this.store.saveComment(conversationId, Object.assign({txt: comment}, res.data)));
+            .then(pid => this.gateway.restPostComment(agid, conversationId, pid, opinion))
+            .then(res => this.store.saveOpinion(conversationId, Object.assign({txt: opinion}, res.data)));
     }
 }
 

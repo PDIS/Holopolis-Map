@@ -1,13 +1,13 @@
 import { PolisGateway } from '../models/PolisGateway';
-import { CommentStore } from '../models/CommentStore';
+import { OpinionStore } from '../models/OpinionStore';
 
 export class VotePage {
     constructor() {
         this.gateway = new PolisGateway();
         this.conversationId = null;
-        this.commentData = null;
+        this.opinionData = null;
         this.participationId = null;
-        this.commentStore = new CommentStore();
+        this.opinionStore = new OpinionStore();
     }
     initPage(conversationId) {
         const conversationPromise = this.gateway.restGetConversation(conversationId).then(res => {
@@ -28,18 +28,18 @@ export class VotePage {
                 toggledShort: true,
             };
         });
-        const commentPromise = this.loadNextComment(conversationId);
+        const opinionPromise = this.loadNextOpinion(conversationId);
         const participationPromise = this.gateway.getPid(conversationId).then(pid => {
             this.participationId = pid;
         });
-        return Promise.all([conversationPromise, commentPromise, participationPromise]);
+        return Promise.all([conversationPromise, opinionPromise, participationPromise]);
     }
-    loadNextComment(conversationId) {
+    loadNextOpinion(conversationId) {
         return this.gateway.restGetNextComment(conversationId).then(response => {
-            this.commentData = response.data;
+            this.opinionData = response.data;
             this.conversationId = conversationId;
-            this.commentStore.saveComment(conversationId, this.commentData);
-            return this.commentData;
+            this.opinionStore.saveOpinion(conversationId, this.opinionData);
+            return this.opinionData;
         });
     }
     voteYes() {
@@ -52,11 +52,11 @@ export class VotePage {
         return this._voteInternal(0);
     }
     _voteInternal(vote) {
-        if (this.conversationId === null || this.participationId == null || this.commentData == null) {
-            throw new Error("load participation id and a comment first!");
+        if (this.conversationId === null || this.participationId == null || this.opinionData == null) {
+            throw new Error("load participation id and a opinion first!");
         }
         const agid = 0;
-        return this.gateway.restPostVote(agid, this.conversationId, this.participationId, this.commentData.tid, vote);
+        return this.gateway.restPostVote(agid, this.conversationId, this.participationId, this.opinionData.tid, vote);
     }
 }
 

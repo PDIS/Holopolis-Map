@@ -15,7 +15,7 @@
           <v-container>
             <v-layout row wrap>
               <v-flex xs12>
-                <div class="mb-5 title">{{commentData.txt}}</div>
+                <div class="mb-5 title">{{opinionData.txt}}</div>
               </v-flex>
             </v-layout>
             <v-layout align-center justify-center row fill-height>
@@ -28,7 +28,7 @@
       </v-flex>
       <v-flex xs12 class="mt-5">
         <v-layout align-center justify-center row fill-height>
-          <v-btn outline color="teal accent-4" class="headline font-weight-light" :to="{name:'comment', params: {id:this.conversationId}}">Give your opinion</v-btn>
+          <v-btn outline color="teal accent-4" class="headline font-weight-light" :to="{name:'opinion', params: {id:this.conversationId}}">Give your opinion</v-btn>
         </v-layout>
       </v-flex>
     </v-layout>
@@ -37,14 +37,14 @@
 
 <script>
 import { VotePage } from "../models/VotePage";
-import comment from '@/components/comment';
+import opinion from '@/components/opinion';
 import login from '@/components/login';
 
 const model = new VotePage();
 
 export default {
   components: {
-    comment,
+    opinion,
     login
   },
   data: function() {
@@ -52,7 +52,7 @@ export default {
       isConversationReady: false,
       conversationData: {},
       conversationId: this.$route.params.id,
-      commentData: {"txt":"NO COMMENT!","tid":4,"created":"1505964534704","tweet_id":null,"quote_src_url":null,"is_seed":false,"is_meta":false,"lang":"zh-TW","pid":20,"randomN":3.452099506918079,"remaining":8,"total":8,"translations":[]},
+      opinionData: {"txt":"NO COMMENT!","tid":4,"created":"1505964534704","tweet_id":null,"quote_src_url":null,"is_seed":false,"is_meta":false,"lang":"zh-TW","pid":20,"randomN":3.452099506918079,"remaining":8,"total":8,"translations":[]},
     };
   },
   methods: {
@@ -63,26 +63,26 @@ export default {
         this.conversationData.longDescription;
     },
     voteYes: function() {
-      model.voteYes().then(this.loadNextComment).catch(console.error);
+      model.voteYes().then(this.loadNextOpinion).catch(console.error);
     },
     voteNo: function() {
-      model.voteNo().then(this.loadNextComment).catch(console.error);
+      model.voteNo().then(this.loadNextOpinion).catch(console.error);
     },
     skipVote: function() {
-      model.skipVote().then(this.loadNextComment).catch(console.error);
+      model.skipVote().then(this.loadNextOpinion).catch(console.error);
     },
-    loadNextComment() {
+    loadNextOpinion() {
       this.isConversationReady = false;
-      model.loadNextComment(this.conversationId).then(commentData => {
-        this.commentData = commentData;
+      model.loadNextOpinion(this.conversationId).then(opinionData => {
+        this.opinionData = opinionData;
         this.isConversationReady = true;
       });
     }
   },
   created: function() {
     model.initPage(this.conversationId)
-      .then(([conversationData, commentData, _]) => {
-        this.commentData = commentData;
+      .then(([conversationData, opinionData, _]) => {
+        this.opinionData = opinionData;
         this.conversationData = conversationData;
         this.isConversationReady = true;
       })

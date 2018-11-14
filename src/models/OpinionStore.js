@@ -1,4 +1,4 @@
-export class CommentStore {
+export class OpinionStore {
     constructor() {
         if (!window.holopolisOpinionStore) {
             window.holopolisOpinionStore = {};
@@ -6,23 +6,23 @@ export class CommentStore {
         this.store = window.holopolisOpinionStore;
     }
 
-    saveComment(conversationId, commentData) {
+    saveOpinion(conversationId, opinionData) {
         this.store[conversationId] = this.store[conversationId] || {};
-        commentData.dotdotdot = commentData.txt;
+        opinionData.dotdotdot = opinionData.txt;
         const LIMIT_LENGTH = 100;
-        if (commentData.dotdotdot.length > LIMIT_LENGTH) {
-            commentData.dotdotdot = commentData.dotdotdot.substr(0, LIMIT_LENGTH - 4) + " ···";
+        if (opinionData.dotdotdot.length > LIMIT_LENGTH) {
+            opinionData.dotdotdot = opinionData.dotdotdot.substr(0, LIMIT_LENGTH - 4) + " ···";
         }
-        this.store[conversationId][commentData.tid] = commentData;
+        this.store[conversationId][opinionData.tid] = opinionData;
     }
 
 
-    getCommentsByConversationId(conversationId) {
+    getOpinionsByConversationId(conversationId) {
         if (!this.store[conversationId]) {
             return [];
         }
         const result = Object.keys(this.store[conversationId])
-            .map(commentId => this.store[conversationId][commentId]);
+            .map(opinionId => this.store[conversationId][opinionId]);
         return result;
     }
 

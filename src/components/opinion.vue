@@ -5,7 +5,7 @@
         <h4 class="display-1">{{conversation.topic}}</h4>
       </v-flex>
       <v-flex xs12 class="mt-5">
-        <v-textarea solo v-model="commentInput" @keyup="showSuggestions()">
+        <v-textarea solo v-model="opinionInput" @keyup="showSuggestions()">
         </v-textarea>
       </v-flex>
       <v-expansion-panel>
@@ -19,7 +19,7 @@
           <v-btn color="teal accent-2" @click="backToVote">
             <v-icon left class="">arrow_back</v-icon>Back
           </v-btn>
-          <v-btn color="teal accent-2" @click="publishComment">
+          <v-btn color="teal accent-2" @click="publishOpinion">
             <v-icon left class="">record_voice_over</v-icon>Send
           </v-btn>
         </v-layout>
@@ -46,10 +46,10 @@
 </template>
 
 <script>
-import { CommentPage } from "../models/CommentPage";
+import { OpinionPage } from "../models/OpinionPage";
 import login from '@/components/login';
 
-const model = new CommentPage();
+const model = new OpinionPage();
 
 export default {
     components: {
@@ -59,7 +59,7 @@ export default {
     return {
         conversation: null,
         conversationId: this.$route.params.id,
-        commentInput: "",
+        opinionInput: "",
         suggestions: [],
         thankscard: false
     };
@@ -72,10 +72,10 @@ export default {
         this.$router.push('/vote/' + this.$route.params.id)
       },
       showSuggestions: function() {
-          this.suggestions = model.getSuggestionsFor(this.commentInput);
+          this.suggestions = model.getSuggestionsFor(this.opinionInput);
       },
-      publishComment: function() {
-          model.publishComment(this.conversationId, this.commentInput).then(() => {
+      publishOpinion: function() {
+          model.publishOpinion(this.conversationId, this.opinionInput).then(() => {
               console.log("go back to vote again");
               this.thankscard = true
               //this.$router.push({name: 'vote', params: {id: this.conversationId}});

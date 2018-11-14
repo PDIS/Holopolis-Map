@@ -4,7 +4,7 @@ import worldmap from '@/components/worldmap'
 import index from '@/components/index'
 import vote from '@/components/vote'
 import share from '@/components/share'
-import comment from '@/components/comment'
+import opinion from '@/components/opinion'
 import login from '@/components/login'
 import intro from '@/components/intro'
 import camera from '@/components/camera'
@@ -39,9 +39,9 @@ export default new Router({
       component: share
     },
     {
-      path: '/comment/:id',
-      name: 'comment',
-      component: comment
+      path: '/opinion/:id',
+      name: 'opinion',
+      component: opinion
     },
     {
       path: '/login',
