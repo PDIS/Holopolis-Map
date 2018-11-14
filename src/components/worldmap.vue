@@ -1,8 +1,8 @@
 <template>
   <div class="vue-leaflet">
-    <l-map style="width: 100%; height: 100vh; z-index:0" :zoom="zoom" :center="center">
+    <l-map style="width: 100%; height: 100vh; z-index:0" :zoom="zoom" :center="[center.coords.latitude, center.coords.longitude]">
       <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
-      <div v-for="marker in markers" :key="marker.id">
+      <div v-for="(marker, i) in markers" :key="i">
         <l-marker :lat-lng="[marker.coords.latitude, marker.coords.longitude]" :icon="marker.icon" @click="selectMarker(marker)">
         </l-marker>
       </div>
@@ -11,10 +11,10 @@
       v-model="dialog"
       max-width="290"
     >
-      <v-card>
+      <v-card v-if="selectedMarker !== null">
         <img src="@/assets/marker.png" height="36" width="31.3" class="ml-3 mt-3">
         <v-card-text>
-          {{selectedMarker.questions[0].title}}
+          {{selectedMarker.questions[0].topic}}
         </v-card-text>
         <v-divider color="black" class="mx-5" ></v-divider>
         <v-card-actions>
@@ -22,7 +22,7 @@
             color=""
             flat="flat"
             @click="dialog = false"
-            :to="{name:'vote', params: {id: selectedMarker.questions[0].id}}"
+            :to="{name:'vote', params: {id: selectedMarker.questions[0].conversation_id}}"
           >
           <v-icon left>where_to_vote</v-icon>
             Vote
@@ -32,7 +32,7 @@
             color=""
             flat="flat"
             @click="dialog = false"
-            :to="{name:'share', params: {id:selectedMarker.questions[0].id}}"
+            :to="{name:'share', params: {id:selectedMarker.questions[0].conversation_id}}"
           >
           <v-icon left>share</v-icon>
             Share
@@ -50,8 +50,6 @@ import vote from '@/components/vote'
 
 const model = new WorldMapPage();
 
-const center = model.getMapDefaultCenter();
-
 export default {
   name: 'worldmap',
   components: {
@@ -64,44 +62,28 @@ export default {
   data () {
     return {
       zoom: 13,
-      center: L.latLng(center.coords.latitude, center.coords.longitude),
+      center: model.getMapDefaultCenter(),
       url: 'https://{s}.tile.osm.org/{z}/{x}/{y}.png',
-      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+      attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
       markers: [],
       dialog: false,
-      selectedMarker: {
-        name: 'UNSELECTED',
-        questions: [
-            {
-                id: 3,
-                title: 'UNSELECTED!',
-                type: 'unselected',
-                polis_link: 'http://wrong-link'
-            },
-        ],
-      },
-      myIcon: L.icon({
-        iconUrl: 'https://github.com/PDIS/Holopolis-Map/blob/master/src/assets/marker.png?raw=true',
-        iconSize: [31.3, 36],
-      })
+      selectedMarker: null,
     }
   },
   methods: {
     //function that retrieves the position
     showPosition: function(position) {
-      const location = {
-        longitude: position.coords.longitude,
-        latitude: position.coords.latitude
-      };
-      this.center = L.latLng(location);
+      this.center = position;
       this.zoom = 15;
     },
     showMarkers: function(markers) {
       this.markers = markers;
     },
     selectMarker: function(marker) {
-      this.dialog = true;
-      this.selectedMarker = marker;
+      model.getMarkerInfo(marker).then(filledMarker => {
+        this.selectedMarker = filledMarker;
+        this.dialog = true;
+      })
     },
   },
   created: function() {
