@@ -1,11 +1,12 @@
 <template>
   <v-container grid-list-xs>
     <v-layout row wrap v-if="isConversationReady" class="ma-3">
-      <v-flex xs12>
+      <v-flex xs8>
         <h4 class="display-1">{{conversationData.topic}}</h4>
       </v-flex>
-      <v-flex>
-        <v-btn flat @click="visualization=true"><img src="/static/img/icons/opinion_visualization_clickme.jpg" alt="Click me!"></v-btn>
+      <v-flex xs4>
+        <!-- <v-btn flat @click="visualization=true"><img src="/static/img/icons/opinion_visualization_clickme.jpg" alt="Click me!"></v-btn>-->
+        <v-img height="100" width="100" src="/static/img/icons/opinion_visualization_clickme.jpg" alt="Click me!" @click="visualization=true"></v-img>
       </v-flex>
       <v-dialog
         v-model="visualization"
