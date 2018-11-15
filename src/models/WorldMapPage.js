@@ -29,7 +29,7 @@ export class WorldMapPage {
 			{
 				id: 3,
 				name: 'Instituto Nacional de Administración Pública',
-				conversation_ids: ['6amx5ecten', '4rffhe8wa9'],
+				conversation_ids: ['6amx5ecten'],
 				coords: {latitude: 40.40969, longitude: -3.69530},
 				logo: 'https://github.com/PDIS/Holopolis-Map/blob/master/src/assets/HEALTH.png?raw=true',
 				icon: L.icon({
