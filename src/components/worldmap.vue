@@ -1,6 +1,6 @@
 <template>
   <div class="vue-leaflet">
-    <l-map id="map-main-holder" style="width: 100%; height: 100vh; z-index:0" :zoom="zoom" :center="[center.coords.latitude, center.coords.longitude]">
+    <l-map id="map-main-holder" style="width: 100%; height: 100vh; z-index:0; position:fixed" :zoom="zoom" :center="[center.coords.latitude, center.coords.longitude]">
       <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
       <div v-for="(marker, i) in markers" :key="i">
         <l-marker :lat-lng="[marker.coords.latitude, marker.coords.longitude]" :icon="marker.icon" @click="selectMarker(marker)">
@@ -164,6 +164,7 @@ export default {
     model.getGpsCenter().then(position => {
       const map = document.getElementById("map-main-holder");
       map.style.height = (+window.innerHeight - 56) + "px";
+      map.style.top = "56px";
       this.showPosition(position);
       model.getMapMarkers(position).then(this.showMarkers);
     });
