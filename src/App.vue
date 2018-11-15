@@ -152,6 +152,9 @@ export default {
   },
   created: function() {
     this.showtoolbar()
+    function preventBehavior(e) {
+        e.preventDefault(); 
+    };
     document.addEventListener("touchmove", preventBehavior, {passive: false});
   },
   watch: {
