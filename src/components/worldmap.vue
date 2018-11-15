@@ -12,7 +12,14 @@
       max-width="290"
     >
       <v-card v-if="selectedMarker !== null">
-        <img src="@/assets/marker.png" height="36" width="31.3" class="ml-3 mt-3">
+        <v-layout align-center justify-center row fill-height>
+          <v-flex xs2>
+            <img :src="selectedMarker.logo" height="36" width="31.3" class="ml-3 mt-3">
+          </v-flex>
+          <v-flex xs10>
+            <div class="ml-3 purple--text">{{selectedMarker.conversations[0].datediff}} days left</div>
+          </v-flex>
+        </v-layout>
         <div v-for="(conversation, i) in selectedMarker.conversations" :key="i">
           <v-card-text>
             {{conversation.topic}}
@@ -140,9 +147,18 @@ export default {
       model.getMarkerInfo(marker).then(([filledMarker, markers]) => {
         this.markers = markers;
         this.selectedMarker = filledMarker;
+        this.selectedMarker.conversations[0].datediff = this.datediff(this.selectedMarker.conversations[0].created)
+        
         this.dialog = true;
       })
     },
+    datediff: function(timestamp) {
+      let currentTime = new Date().getTime();
+      var difference = currentTime - timestamp;
+      var daysDifference = Math.floor(difference/1000/60/60/24);
+
+      return daysDifference;
+    }
   },
   created: function() {
     model.getGpsCenter().then(position => {
