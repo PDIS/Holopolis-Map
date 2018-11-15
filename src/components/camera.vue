@@ -10,7 +10,7 @@
         <v-card-title primary-title>
           <div>
             <h3 class="headline mb-0 cyan--text">Scan to join the conversation</h3>
-            <div>How to bring down atmospheric pollution in Madrid?</div>
+            <div>Find our stickers and place the QR code on the center.</div>
           </div>
         </v-card-title>
       </v-card>
