@@ -1,6 +1,6 @@
 {
   "name": "Holopolis Map",
-  "short_name": "holopolis-map",
+  "short_name": "holopolis_map",
   "icons": [
     {
       "src": "/static/img/icons/holopolis-192x192.png",
