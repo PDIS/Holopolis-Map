@@ -6,7 +6,7 @@ export class WorldMapPage {
 		this.markers = [
 			{
 				id: 1,
-				name: 'Atocha',
+				name: 'Atocha Renfe',
 				conversation_ids: ['92km3zkksd'],
 				coords: {latitude: 40.40613, longitude: -3.6903},
 				icon: L.icon({
@@ -36,7 +36,7 @@ export class WorldMapPage {
 			},
 			{
 				id: 4,
-				name: 'Jardín Botánico',
+				name: 'Real Jardín Botánico de Madrid',
 				conversation_ids: ['4rffhe8wa9'],
 				coords: {latitude: 40.41109, longitude: -3.68978},
 				icon: L.icon({
