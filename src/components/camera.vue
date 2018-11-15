@@ -1,6 +1,10 @@
 <template>
   <div>
-    <qrcode-stream @decode="onDecode">
+    <qrcode-stream
+      @decode="onDecode"
+      @init="onInit"
+      id="qrcode-stream-container"
+    >
       <v-card color="black" dark style="opacity: 0.45">
         <v-card-title primary-title>
           <div>
@@ -21,8 +25,12 @@ export default {
     }
   },
   methods: {
-    onDecode (decodedString) {
+    onDecode(decodedString) {
       this.$router.push('/vote/3n3dxmbjwt')
+    },
+    onInit() {
+      const video = document.getElementById('qrcode-stream-container').querySelector('video');
+      video.style.height = "100vh";
     }
   }
 }
