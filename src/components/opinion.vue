@@ -5,20 +5,51 @@
         <h4 class="display-1">{{conversation.topic}}</h4>
       </v-flex>
       <v-flex xs12 class="mt-5">
-        <v-textarea solo v-model="opinionInput" @keyup="showSuggestions()">
-        </v-textarea>
-        <v-btn color="teal accent-2" @click="publishOpinion">
-          <v-icon left class="">record_voice_over</v-icon>Send
-        </v-btn>
+        <v-layout row align-center justify-center fill-height>
+          <v-flex xs8>
+            <v-layout align-center justify-center row fill-height>
+              <v-textarea solo v-model="opinionInput" @keyup="showSuggestions()">
+              </v-textarea>
+            </v-layout>
+          </v-flex>
+          <v-flex xs4>
+            <v-layout align-center justify-center row fill-height>
+              <v-btn fab color="teal accent-2" @click="publishOpinion">
+                Submit
+              </v-btn>
+            </v-layout>
+          </v-flex>
+        </v-layout>
       </v-flex>
-      <v-flex v-if="suggestions.length > 0">
-        Is that what you mean?
-        <v-flex xs12 v-for="suggestion in suggestions" :key="suggestion.id">
+      <v-flex xs12 v-if="suggestions.length > 0">
+        <div class="my-3 title">Is that what you mean?</div>
+        <v-layout row wrap>
+          <v-flex xs12 v-for="suggestion in suggestions" :key="suggestion.id">
+            <v-layout row wrap>
+              <v-flex xs8>
+                <v-layout align-center justify-start row fill-height>
+                  <v-card width="100%">
+                    <v-card-text>
+                      <div>{{suggestion.txt}}</div>
+                    </v-card-text>
+                  </v-card>
+                </v-layout>
+              </v-flex>
+              <v-flex xs4>
+                <v-layout align-center justify-center row fill-height>
+                  <v-btn fab outline v-if="suggestion.notAgreed" color="teal accent-2" @click="agreeSuggestion(suggestion)">Agree
+                  </v-btn>
+                </v-layout>
+              </v-flex>
+            </v-layout>
+          </v-flex>
+        </v-layout>
+      <!--   <v-flex xs12 v-for="suggestion in suggestions" :key="suggestion.id">
           <v-textarea readonly no-resize solo :value="suggestion.txt">{{suggestion.txt}}</v-textarea>
-          <v-btn v-if="suggestion.notAgreed" color="teal accent-2" @click="agreeSuggestion(suggestion)">
-            <v-icon left class="">record_voice_over</v-icon>Agree
+          <v-btn class="" v-if="suggestion.notAgreed" color="teal accent-2" @click="agreeSuggestion(suggestion)">
+            <v-icon left>thumb_up</v-icon>Agree
           </v-btn>
-        </v-flex>
+        </v-flex> -->
       </v-flex>
       <!--
       <v-expansion-panel>
@@ -28,13 +59,7 @@
           </v-expansion-panel-content>
       </v-expansion-panel>
       -->
-      <v-flex xs12 class="mt-3">
-        <v-layout align-center justify-space-between row fill-height>
-          <v-btn color="teal accent-2" @click="backToVote">
-            <v-icon left class="">arrow_back</v-icon>Back
-          </v-btn>
-        </v-layout>
-      </v-flex>
+
     </v-layout>
      <v-dialog
       v-model="thankscard"

@@ -17,7 +17,7 @@
             <img :src="selectedMarker.logo" height="36" width="31.3" class="ml-3 mt-3">
           </v-flex>
           <v-flex xs10>
-            <div class="ml-3 purple--text">{{selectedMarker.conversations[0].datediff}} days left</div>
+            <div class="ml-3 purple--text">{{selectedMarker.conversations[0].datediff}} days left to vote</div>
           </v-flex>
         </v-layout>
         <div v-for="(conversation, i) in selectedMarker.conversations" :key="i">
