@@ -20,7 +20,7 @@ export class WorldMapPage {
 				conversation_ids: ['3n3dxmbjwt'],
 				coords: {latitude: 40.41163, longitude: -3.69293},
 				icon: L.icon({
-					iconUrl: 'https://github.com/PDIS/Holopolis-Map/blob/master/src/assets/Health.gif?raw=true',
+					iconUrl: 'https://github.com/PDIS/Holopolis-Map/blob/master/src/assets/Equality.gif?raw=true',
 					iconSize: [32, 47.2],
 				})
 			},
@@ -30,7 +30,7 @@ export class WorldMapPage {
 				conversation_ids: ['6amx5ecten', '4rffhe8wa9'],
 				coords: {latitude: 40.40969, longitude: -3.69530},
 				icon: L.icon({
-					iconUrl: 'https://github.com/PDIS/Holopolis-Map/blob/master/src/assets/EDUCATION.gif?raw=true',
+					iconUrl: 'https://github.com/PDIS/Holopolis-Map/blob/master/src/assets/Health.gif?raw=true',
 					iconSize: [32, 47.2],
 				})
 			},
@@ -40,7 +40,7 @@ export class WorldMapPage {
 				conversation_ids: ['4rffhe8wa9'],
 				coords: {latitude: 40.41109, longitude: -3.68978},
 				icon: L.icon({
-					iconUrl: 'https://github.com/PDIS/Holopolis-Map/blob/master/src/assets/Equality.gif?raw=true',
+					iconUrl: 'https://github.com/PDIS/Holopolis-Map/blob/master/src/assets/EDUCATION.gif?raw=true',
 					iconSize: [32, 47.2],
 				})
 			},
