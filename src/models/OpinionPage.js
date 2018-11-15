@@ -1,4 +1,4 @@
-import { PolisGateway } from '../models/PolisGateway';
+import { PolisGateway } from './PolisGateway';
 import { OpinionStore } from '../models/OpinionStore';
 
 export class OpinionPage {
@@ -8,6 +8,7 @@ export class OpinionPage {
         this.participationId = null;
         this.pidPromise = null;
         this.opinions = [];
+        this.suggestions = [];
     }
     initPage(conversationId) {
         this.pidPromise = this.gateway.getPid(conversationId).then(pid => {
@@ -20,7 +21,8 @@ export class OpinionPage {
     getSuggestionsFor(input) {
         input = input.trim().toLowerCase();
         if (input === "") return [];
-        return this.opinions.filter(phrase => phrase.txt.toLowerCase().includes(input));
+        this.suggestions = this.opinions.filter(phrase => phrase.txt.toLowerCase().includes(input));
+        return this.suggestions;
     }
     publishOpinion(conversationId, opinion) {
         const agid = 0;
@@ -30,6 +32,10 @@ export class OpinionPage {
         return this.pidPromise
             .then(pid => this.gateway.restPostComment(agid, conversationId, pid, opinion))
             .then(res => this.store.saveOpinion(conversationId, Object.assign({txt: opinion}, res.data)));
+    }
+    agreeSuggestion(suggestion) {
+        suggestion.notAgreed = false;
+        return new Promise(resolve => resolve(this.suggestions));
     }
 }
 

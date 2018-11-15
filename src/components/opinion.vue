@@ -7,20 +7,31 @@
       <v-flex xs12 class="mt-5">
         <v-textarea solo v-model="opinionInput" @keyup="showSuggestions()">
         </v-textarea>
+        <v-btn color="teal accent-2" @click="publishOpinion">
+          <v-icon left class="">record_voice_over</v-icon>Send
+        </v-btn>
       </v-flex>
+      <v-flex v-if="suggestions.length > 0">
+        Is that what you mean?
+        <v-flex xs12 v-for="suggestion in suggestions" :key="suggestion.id">
+          <v-textarea readonly no-resize solo :value="suggestion.txt">{{suggestion.txt}}</v-textarea>
+          <v-btn v-if="suggestion.notAgreed" color="teal accent-2" @click="agreeSuggestion(suggestion)">
+            <v-icon left class="">record_voice_over</v-icon>Agree
+          </v-btn>
+        </v-flex>
+      </v-flex>
+      <!--
       <v-expansion-panel>
           <v-expansion-panel-content v-for="suggestion in suggestions" :key="suggestion.id">
             <div slot="header">{{suggestion.dotdotdot}}</div>
             <v-btn flat @click="goToConversation(suggestion.id)">{{suggestion.txt}}</v-btn>
           </v-expansion-panel-content>
       </v-expansion-panel>
+      -->
       <v-flex xs12 class="mt-3">
         <v-layout align-center justify-space-between row fill-height>
           <v-btn color="teal accent-2" @click="backToVote">
             <v-icon left class="">arrow_back</v-icon>Back
-          </v-btn>
-          <v-btn color="teal accent-2" @click="publishOpinion">
-            <v-icon left class="">record_voice_over</v-icon>Send
           </v-btn>
         </v-layout>
       </v-flex>
@@ -67,8 +78,10 @@ export default {
     };
   },
   methods: {
-      goToConversation: function(id) {
-
+      agreeSuggestion: function(suggestion) {
+        model.agreeSuggestion(suggestion).then(suggestions => {
+          this.suggestions = suggestions;
+        });
       },
       backToVote: function() {
         this.$router.push('/vote/' + this.$route.params.id)
