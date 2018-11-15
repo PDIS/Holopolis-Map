@@ -157,6 +157,7 @@ export default {
         e.preventDefault();
       }
     };
+    window.holopolisPreventTouchBehavior = true;
     document.addEventListener("touchmove", preventBehavior, {passive: false});
   },
   watch: {
