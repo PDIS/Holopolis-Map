@@ -43,7 +43,11 @@ export class VotePage {
         });
     }
     voteYes() {
-        return this._voteInternal(1);
+        return this._voteInternal(1)
+            .then(() => {
+                this.opinionData.notAgreed = false;
+                this.opinionStore.saveOpinion(this.conversationId, this.opinionData);
+            });
     }
     voteNo() {
         return this._voteInternal(-1);
