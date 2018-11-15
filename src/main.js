@@ -1,5 +1,6 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+import 'font-awesome/css/font-awesome.min.css'
 import Vue from 'vue';
 import App from './App';
 import router from './router';
@@ -9,7 +10,9 @@ import 'leaflet/dist/leaflet.css';
 import VueQrcodeReader from 'vue-qrcode-reader';
 import SocialSharing from 'vue-social-sharing';
 
-Vue.use(Vuetify);
+Vue.use(Vuetify, {
+  iconfont: 'fa4'
+ })
 Vue.use(VueQrcodeReader);
 Vue.use(SocialSharing);
 

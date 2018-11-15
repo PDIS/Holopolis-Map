@@ -46,35 +46,53 @@
       max-width="290"
     >
       <v-card v-if="shareConversation != null">
-        <social-sharing
-          :url="`https://pol.is/${shareConversation.conversation_id}`"
-          :title="`I just spotted this conversation: \n\n${shareConversation.topic}\n\nCheck it out and join me contributing opinions to our city issues!\n\n`"
-          :description="`I just spotted this conversation: \n\n${shareConversation.topic}\n\nCheck it out and join me contributing opinions to our city issues!\n\n`"
-          :quote="`I just spotted this conversation: \n\n${shareConversation.topic}\n\nCheck it out and join me contributing opinions to our city issues!\n\n`"
-          hashtags="polis,democracy"
-          twitter-user="polis"
-          inline-template
-        >
-          <div>
-            <network network="facebook">
-              <i class="fa fa-fw fa-facebook"></i><v-icon left>share</v-icon>Facebook
-            </network>
-            <network network="twitter">
-              <i class="fa fa-fw fa-twitter"></i><v-icon left>share</v-icon>Twitter
-            </network>
-            <network network="whatsapp">
-              <i class="fa fa-fw fa-whatsapp"></i><v-icon left>share</v-icon>Whatsapp
-            </network>
-            <network network="telegram">
-              <i class="fa fa-telegram"></i><v-icon left>share</v-icon>Telegram
-            </network>
-          </div>
-        </social-sharing>
-        <v-btn
-          @click="share = false"
-        >
-          Cancel
-        </v-btn>
+          <social-sharing
+            :url="`https://pol.is/${shareConversation.conversation_id}`"
+            :title="`I just spotted this conversation: \n\n${shareConversation.topic}\n\nCheck it out and join me contributing opinions to our city issues!\n\n`"
+            :description="`I just spotted this conversation: \n\n${shareConversation.topic}\n\nCheck it out and join me contributing opinions to our city issues!\n\n`"
+            :quote="`I just spotted this conversation: \n\n${shareConversation.topic}\n\nCheck it out and join me contributing opinions to our city issues!\n\n`"
+            hashtags="polis,democracy"
+            twitter-user="polis"
+            inline-template
+          >
+            <v-container grid-list-xs>
+              <v-layout row>
+                <v-flex xs3>
+                  <v-layout align-center justify-center row fill-height>
+                    <network network="facebook">
+                      <v-icon color="indigo" large>fa-facebook</v-icon>
+                    </network>  
+                  </v-layout>
+                </v-flex>
+                <v-flex xs3>
+                   <v-layout align-center justify-center row fill-height>
+                    <network network="twitter">
+                      <v-icon color="blue" large>fa-twitter</v-icon>
+                    </network>  
+                  </v-layout>
+                </v-flex>
+                  <v-flex xs3>
+                   <v-layout align-center justify-center row fill-height>
+                    <network network="telegram">
+                      <v-icon color="blue" large>fa-telegram</v-icon>
+                    </network>  
+                  </v-layout>
+                </v-flex>
+                  <v-flex xs3>
+                   <v-layout align-center justify-center row fill-height>
+                    <network network="whatsapp">
+                      <v-icon color="green" large>fa-whatsapp</v-icon>
+                    </network>  
+                  </v-layout>
+                </v-flex>
+              </v-layout>
+              <v-layout align-end justify-start row fill-height>
+                <v-flex xs12>
+                  <v-btn flat color="teal" @click="share = false">Cancel</v-btn>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </social-sharing>
       </v-card>
     </v-dialog>
   </div>
