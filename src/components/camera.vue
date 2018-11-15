@@ -1,6 +1,6 @@
 <template>
   <div>
-    <qrcode-stream
+    <qrcode-reader
       @decode="onDecode"
       @init="onInit"
       style="background: black; position: fixed; top: 56px;"
@@ -14,7 +14,7 @@
           </div>
         </v-card-title>
       </v-card>
-    </qrcode-stream>
+    </qrcode-reader>
   </div>
 </template>
 
