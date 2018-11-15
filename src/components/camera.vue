@@ -30,7 +30,7 @@ export default {
     },
     onInit() {
       const video = document.getElementById('qrcode-stream-container').querySelector('video');
-      video.style.height = "100vh";
+      video.style.height = "80vh";
     }
   }
 }
