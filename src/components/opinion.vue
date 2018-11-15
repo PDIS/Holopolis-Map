@@ -103,13 +103,13 @@ export default {
   created: function() {
     model.initPage(this.conversationId)
     .then(conversation => {
+      window.holopolisPreventTouchBehavior = false;
       this.conversation = conversation;
     })
     .catch(err => {
       console.error(err);
       this.$router.push('/login');
     });
-    window.holopolisPreventTouchBehavior = false;
   },
   destroyed: function() {
     window.holopolisPreventTouchBehavior = true;

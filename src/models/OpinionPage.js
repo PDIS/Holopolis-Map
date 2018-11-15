@@ -37,9 +37,10 @@ export class OpinionPage {
     }
     agreeSuggestion(suggestion) {
         const agid = 0;
-        return this.gateway.restPostVote(agid, this.conversationId, this.participationId, this.opinionData.tid, 1)
+        return this.gateway.restPostVote(agid, this.conversationId, this.participationId, suggestion.tid, 1)
             .then(() => {
                 suggestion.notAgreed = false;
+                this.store.saveOpinion(this.conversationId, suggestion);
                 return this.suggestions;
             });
     }

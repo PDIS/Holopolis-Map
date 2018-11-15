@@ -106,6 +106,7 @@ export default {
   created: function() {
     model.initPage(this.conversationId)
       .then(([conversationData, opinionData, _]) => {
+        window.holopolisPreventTouchBehavior = false;
         this.opinionData = opinionData;
         this.conversationData = conversationData;
         this.isConversationReady = true;
@@ -114,7 +115,6 @@ export default {
         console.error(err);
         this.$router.push('/login');
       });
-    window.holopolisPreventTouchBehavior = false;
   },
   destroyed: function() {
     window.holopolisPreventTouchBehavior = true;
