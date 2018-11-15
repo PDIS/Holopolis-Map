@@ -6,16 +6,18 @@ export class OpinionPage {
         this.gateway = new PolisGateway();
         this.store = new OpinionStore();
         this.participationId = null;
+        this.conversationId = null;
         this.pidPromise = null;
         this.opinions = [];
         this.suggestions = [];
     }
     initPage(conversationId) {
-        this.pidPromise = this.gateway.getPid(conversationId).then(pid => {
+        this.conversationId = conversationId;
+        this.pidPromise = this.gateway.getPid(this.conversationId).then(pid => {
             this.participationId = pid;
-            this.opinions = this.store.getOpinionsByConversationId(conversationId);
+            this.opinions = this.store.getOpinionsByConversationId(this.conversationId);
         });
-        return Promise.all([this.gateway.restGetConversation(conversationId), this.pidPromise])
+        return Promise.all([this.gateway.restGetConversation(this.conversationId), this.pidPromise])
             .then(([conversationResponse, _]) => conversationResponse.data);
     }
     getSuggestionsFor(input) {
@@ -24,18 +26,22 @@ export class OpinionPage {
         this.suggestions = this.opinions.filter(phrase => phrase.txt.toLowerCase().includes(input));
         return this.suggestions;
     }
-    publishOpinion(conversationId, opinion) {
+    publishOpinion(opinion) {
         const agid = 0;
         if (this.participationId === null) {
             throw new Error("load participation id first!");
         }
         return this.pidPromise
-            .then(pid => this.gateway.restPostComment(agid, conversationId, pid, opinion))
-            .then(res => this.store.saveOpinion(conversationId, Object.assign({txt: opinion}, res.data)));
+            .then(pid => this.gateway.restPostComment(agid, this.conversationId, pid, opinion))
+            .then(res => this.store.saveOpinion(this.conversationId, Object.assign({txt: opinion}, res.data)));
     }
     agreeSuggestion(suggestion) {
-        suggestion.notAgreed = false;
-        return new Promise(resolve => resolve(this.suggestions));
+        const agid = 0;
+        return this.gateway.restPostVote(agid, this.conversationId, this.participationId, this.opinionData.tid, 1)
+            .then(() => {
+                suggestion.notAgreed = false;
+                return this.suggestions;
+            });
     }
 }
 

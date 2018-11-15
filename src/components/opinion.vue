@@ -90,7 +90,7 @@ export default {
           this.suggestions = model.getSuggestionsFor(this.opinionInput);
       },
       publishOpinion: function() {
-          model.publishOpinion(this.conversationId, this.opinionInput).then(() => {
+          model.publishOpinion(this.opinionInput).then(() => {
               console.log("go back to vote again");
               this.thankscard = true
               //this.$router.push({name: 'vote', params: {id: this.conversationId}});
@@ -101,14 +101,18 @@ export default {
       },
   },
   created: function() {
-      model.initPage(this.conversationId)
-      .then(conversation => {
-        this.conversation = conversation;
-      })
-      .catch(err => {
-        console.error(err);
-        this.$router.push('/login');
-      });
+    model.initPage(this.conversationId)
+    .then(conversation => {
+      this.conversation = conversation;
+    })
+    .catch(err => {
+      console.error(err);
+      this.$router.push('/login');
+    });
+    window.holopolisPreventTouchBehavior = false;
+  },
+  destroyed: function() {
+    window.holopolisPreventTouchBehavior = true;
   }
 }
 </script>

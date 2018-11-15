@@ -114,6 +114,10 @@ export default {
         console.error(err);
         this.$router.push('/login');
       });
+    window.holopolisPreventTouchBehavior = false;
+  },
+  destroyed: function() {
+    window.holopolisPreventTouchBehavior = true;
   }
 }
 </script>

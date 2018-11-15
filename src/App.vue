@@ -140,20 +140,22 @@ export default {
   methods: {
     showtoolbar: function() {
       if (this.$route.name == '/' || this.$route.name == 'intro') {
-        this.toolbar = false
+        this.toolbar = false;
       } else {
-        this.toolbar = true
+        this.toolbar = true;
       }
     },
     showinfo: function() {
       console.log(this.info)
-      this.info = !this.info
+      this.info = !this.info;
     }
   },
   created: function() {
-    this.showtoolbar()
+    this.showtoolbar();
     function preventBehavior(e) {
-        e.preventDefault(); 
+      if (window.holopolisPreventTouchBehavior === true) {
+        e.preventDefault();
+      }
     };
     document.addEventListener("touchmove", preventBehavior, {passive: false});
   },
