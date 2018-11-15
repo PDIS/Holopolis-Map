@@ -52,9 +52,25 @@
       <v-toolbar-title v-text="title"></v-toolbar-title> -->
     </v-toolbar>
     <v-content>
-      <v-dialog v-model="info" full-width>
+      <v-bottom-sheet v-model="info">
+        <v-carousel height="15em" hide-controls interval="99999">
+        <v-carousel-item style="opacity:0.6" v-for="(item,i) in items" :key="i" src="https://static-cdn.jtvnw.net/jtv_user_pictures/e91a3dcf-c15a-441a-b369-996922364cdc-profile_image-300x300.png">
+          <v-jumbotron dark>
+            <v-container fill-height>
+              <v-layout align-start>
+                <v-flex>
+                  <h3 class="headline mb-0 cyan--text">{{item.title}}</h3>
+                  <div>{{item.text}}</div>
+                </v-flex>
+              </v-layout>
+            </v-container>
+          </v-jumbotron>
+        </v-carousel-item>
+      </v-carousel>
+    </v-bottom-sheet>
+      <!-- <v-dialog v-model="info" full-width>
       <v-carousel hide-controls interval="99999">
-        <v-carousel-item style="opacity:0.5" v-for="(item,i) in items" :key="i" src="https://static-cdn.jtvnw.net/jtv_user_pictures/e91a3dcf-c15a-441a-b369-996922364cdc-profile_image-300x300.png">
+        <v-carousel-item style="opacity:0.6" v-for="(item,i) in items" :key="i" src="https://static-cdn.jtvnw.net/jtv_user_pictures/e91a3dcf-c15a-441a-b369-996922364cdc-profile_image-300x300.png">
           <v-jumbotron dark>
             <v-container fill-height>
               <v-layout align-center>
@@ -67,7 +83,7 @@
           </v-jumbotron>
         </v-carousel-item>
       </v-carousel>
-      </v-dialog>
+      </v-dialog> -->
       <router-view/>
     </v-content>
 <!--     <v-navigation-drawer
