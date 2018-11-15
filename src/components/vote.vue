@@ -30,9 +30,21 @@
               </v-flex>
             </v-layout>
             <v-layout align-center justify-center row fill-height>
-              <v-btn round color="teal accent-2" @click="voteYes()">Agree</v-btn>
-              <v-btn round color="teal accent-2" @click="voteNo()">Disagree</v-btn>
-              <v-btn round color="teal accent-2" @click="skipVote()">Pass</v-btn>
+              <v-flex xs4>
+                <v-layout align-center justify-center row fill-height>
+                  <v-btn round small color="teal accent-2" @click="voteYes()">Agree</v-btn>
+                </v-layout>
+              </v-flex>
+              <v-flex xs4>
+                <v-layout align-center justify-center row fill-height>
+                  <v-btn round small color="teal accent-2" @click="voteNo()">Disagree</v-btn>
+                </v-layout>
+              </v-flex>
+              <v-flex xs4>
+                <v-layout align-center justify-center row fill-height>
+                  <v-btn round small color="teal accent-2" @click="skipVote()">Pass</v-btn>
+                </v-layout>
+              </v-flex>
             </v-layout>
           </v-container>
         </v-card>
