@@ -3,6 +3,7 @@
     <qrcode-stream
       @decode="onDecode"
       @init="onInit"
+      style="background: black"
       id="qrcode-stream-container"
     >
       <v-card color="black" dark style="opacity: 0.45">
