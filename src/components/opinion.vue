@@ -29,16 +29,18 @@
       v-model="thankscard"
       max-width="290"
     >
-      <v-card>
-        <v-card-title class="title">Thanks for giving opinions!</v-card-title>
+      <v-card class="rounded-card">
+        <v-card-text>
+          <div class="title text-xs-center">Congratulations!</div>
+          <div class=".body-2 mt-2">You have submitted your comment.</div>
+        </v-card-text>
+        <v-divider></v-divider>
         <v-card-actions>
-          <v-btn color="cyan" flat="flat" @click="thankscard = false">
-            Cancel
-          </v-btn>
-          <v-spacer></v-spacer>
-          <v-btn color="cyan" flat="flat" :to="{name: 'vote', params: {id: this.conversationId}}">
-            Back to vote
-          </v-btn>
+          <v-layout align-center justify-center row fill-height>
+            <v-btn large color="cyan" flat="flat" :to="{name: 'vote', params: {id: this.conversationId}}">
+              Confirm
+            </v-btn>
+          </v-layout>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -99,5 +101,7 @@ export default {
 </script>
 
 <style>
-
+.rounded-card{
+    border-radius:20px;
+}
 </style>
