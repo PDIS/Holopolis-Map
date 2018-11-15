@@ -27,7 +27,7 @@ export class WorldMapPage {
 			{
 				id: 3,
 				name: 'Reina Sofía',
-				conversation_ids: ['6rhkfnv8v7'],
+				conversation_ids: ['4rffhe8wa9'],
 				coords: {latitude: 40.40817, longitude: -3.69437},
 				icon: L.icon({
 					iconUrl: 'https://github.com/PDIS/Holopolis-Map/blob/master/src/assets/EDUCATION.gif?raw=true',
@@ -37,7 +37,7 @@ export class WorldMapPage {
 			{
 				id: 4,
 				name: 'Reina Sofía',
-				conversation_ids: ['5n8hnwcdmt'],
+				conversation_ids: ['6amx5ecten'],
 				coords: {latitude: 40.40817, longitude: -3.69337},
 				icon: L.icon({
 					iconUrl: 'https://github.com/PDIS/Holopolis-Map/blob/master/src/assets/Equality.gif?raw=true',
