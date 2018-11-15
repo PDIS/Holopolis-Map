@@ -4,6 +4,16 @@
       <v-flex xs12>
         <h4 class="display-1">{{conversationData.topic}}</h4>
       </v-flex>
+      <v-flex>
+        <v-btn flat @click="visualization=true"><img src="/static/img/icons/opinion_visualization_clickme.jpg" alt="Click me!"></v-btn>
+      </v-flex>
+      <v-dialog
+        v-model="visualization"
+      >
+        <v-card style="height: 200px">
+          <img src="/static/img/opinion_visualization.gif" alt="Opinion Visualization">
+        </v-card>
+      </v-dialog>
       <v-flex xs12>
         <div class="body-2 my-3">{{conversationData.description}}</div>
       </v-flex>
@@ -49,6 +59,7 @@ export default {
   },
   data: function() {
     return {
+      visualization: false,
       isConversationReady: false,
       conversationData: {},
       conversationId: this.$route.params.id,
