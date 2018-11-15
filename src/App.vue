@@ -152,6 +152,7 @@ export default {
   },
   created: function() {
     this.showtoolbar()
+    document.addEventListener("touchmove", preventBehavior, {passive: false});
   },
   watch: {
     $route: function() {
