@@ -17,8 +17,8 @@ export class WorldMapPage {
 			},
 			{
 				id: 2,
-				name: 'La Ingobernable',
-				conversation_ids: ['3n3dxmbjwt'],
+				name: 'Why Madrid Should Be Your Next Vacation Destination',
+				conversation_ids: ['3eeru2dfur'],
 				coords: {latitude: 40.41163, longitude: -3.69293},
 				logo: 'https://github.com/PDIS/Holopolis-Map/blob/master/src/assets/EQUALITY.png?raw=true',
 				icon: L.icon({
