@@ -2,6 +2,13 @@
 
 > A Vue.js project
 
+## References
+
+Live demo (access with mobile or tablet): https://holopolis-map.pdis.tw
+Mockups: https://xd.adobe.com/view/d6fb46ca-aabf-4167-7ca5-16fff3bbd6f7-a0ca/
+Slides: https://www.canva.com/design/DADJDvut0tw/8VA8RTSRpb53GYalJ_hIDg/view
+Documentation: https://docs.google.com/document/d/1GRa8wx6ofWAeXiXy-02J1_AmnJOjLZh_yNERIQ_g88o/view
+
 ## Build Setup
 
 ``` bash
